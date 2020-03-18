@@ -1,0 +1,76 @@
+{
+    "series": [
+        {
+            "name": "ACSV-BV9901199",
+            "flag": "C",
+            "naics": 933141,
+            "item": 4442,
+            "topic": "Lorem ipsum",
+            "subtopic": "Lorem",
+            "itemType": "EXP",
+            "dataType": "CV",
+            "form": "EXP772",
+            "table": "TOT_EXP101",
+            "lastUpdated": "2019-02-19 16:47:27",
+            "updatedBy": "meda001",
+            "view": "Pub",
+            "dataPoints": [
+                {"name": "2013A1", "value": 2.23},
+                {"name": "2014A1", "value": 3.43},
+                {"name": "2015A1", "value": 2.47},
+                {"name": "2016A1", "value": 4.86},
+                {"name": "2017A1", "value": 3.47},
+                {"name": "2018A1", "value": 3.33},
+                {"name": "2019A1", "value": 2.85}
+            ]
+        },
+        {
+            "name": "ACSV-BV9901132",
+            "flag": "C",
+            "naics": 933141,
+            "item": 4442,
+            "topic": "Lorem ipsum",
+            "subtopic": "Lorem",
+            "itemType": "EXP",
+            "dataType": "CV",
+            "form": "EXP772",
+            "table": "TOT_EXP101",
+            "lastUpdated": "2019-02-19 16:47:27",
+            "updatedBy": "meda001",
+            "view": "Pub",
+            "dataPoints": [
+                {"name": "2013A1", "value": 1.62},
+                {"name": "2014A1", "value": 3.87},
+                {"name": "2015A1", "value": 3.44},
+                {"name": "2016A1", "value": 3.73},
+                {"name": "2017A1", "value": 3.24},
+                {"name": "2018A1", "value": 4.26},
+                {"name": "2019A1", "value": 3.77}
+            ]
+        },
+        {
+            "name": "ACSV-BV9901155",
+            "flag": "C",
+            "naics": 933142,
+            "item": 4442,
+            "topic": "Lorem ipsum",
+            "subtopic": "Lorem",
+            "itemType": "EXP",
+            "dataType": "CV",
+            "form": "EXP772",
+            "table": "TOT_EXP101",
+            "lastUpdated": "2019-02-19 16:47:27",
+            "updatedBy": "meda001",
+            "view": "Pub",
+            "dataPoints": [
+                {"name": "2013A1", "value": 6.23},
+                {"name": "2014A1", "value": 5.32},
+                {"name": "2015A1", "value": 6.23},
+                {"name": "2016A1", "value": 7.34},
+                {"name": "2017A1", "value": 4.55},
+                {"name": "2018A1", "value": 4.66},
+                {"name": "2019A1", "value": 4.34}
+            ]
+        }
+    ]
+}

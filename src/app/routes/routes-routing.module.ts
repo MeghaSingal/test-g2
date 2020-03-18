@@ -26,7 +26,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent, data: { title: '仪表盘', titleI18n: 'dashboard' } },
 
       // { path: 'series', loadChildren: () => import('./series/series.module').then(m => m.SeriesModule) },
-      { path: 'series', loadChildren: './series/series.module#SeriesModule' },
+      { path: 'series', loadChildren: () => import('./series/series.module').then(m => m.SeriesModule) },
 
       // Exception
       { path: 'exception', loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule) },

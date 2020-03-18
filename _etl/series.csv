@@ -1,0 +1,101 @@
+name,flag,naics,item,topic,subtopic,item_type,data_type,form,tbl,view,last_updated,val2018a1,val2017a1,val2016a1,val2015a1
+r1800aaa220000ely,K,22,XD180000,Utilities,Excludes government owned utilities.,EST,r,REV602,Table1,Pub,1/21/18 11:50,600624,580243,572358,577542
+r1800aaa220000ely,K,22,XD180000,Utilities,Excludes government owned utilities.,YY,r,REV602,Table1,Pub,10/7/18 23:53,5.6,5.9,4.8,4.9
+r1800aaa220000ely,K,22,XD180000,Utilities,Excludes government owned utilities.,CV,r,EXP772,Table1,Pub,8/24/18 0:49,0.4,0.5,0.6,0.2
+r1800aaa220000ely,K,22,XD180000,Utilities,Excludes government owned utilities.,SE,r,REV602,Table1,Priv,1/8/19 6:37,0.1,0.2,0.5,0.4
+r1800aaa220000ely,K,22,XD180000,Utilities,Excludes government owned utilities.,IMP,r,REV602,Table1,Priv,10/7/19 19:35,20,20,10,10
+r1800aae221100ely,M,2211,XD180000,"Electric Power Generation, Transmission and Distribution",,EST,r,BV334,Table2,Pub,8/3/18 15:01,474132,464934,462302,464561
+r1800aae221100ely,M,2211,X550100,"Electric Power Generation, Transmission and Distribution",,YY,r,REV602,Table2,Pub,1/21/18 11:50,3.2,3.5,4.4,4.2
+r1800aae221100ely,M,2211,X550200,"Electric Power Generation, Transmission and Distribution",,CV,r,REV602,Table2,Pub,10/7/18 23:53,0.3,0.3,0.4,0.4
+r1800aae221100ely,M,2211,X550300,"Electric Power Generation, Transmission and Distribution",,SE,r,EXP772,Table2,Pub,8/24/18 0:49,0.2,0.2,0.2,3
+r1800aae221100ely,M,2211,X550400,"Electric Power Generation, Transmission and Distribution",,IMP,r,REV602,Table2,Priv,1/8/19 6:37,14.8,14.4,12.9,9.9
+r5505aae221100ely,R,2211,X550500,"Electric Power Generation, Transmission and Distribution",,EST,r,REV602,Table1,Priv,10/7/19 19:35,173702,166813,184649,182270
+r5505aae221100ely,R,2211,XD575000,"Electric Power Generation, Transmission and Distribution",,YY,r,BV334,Table1,Pub,8/3/18 15:01,4.2,4.4,4.6,4.3
+r5505aae221100ely,R,2211,XD575100,"Electric Power Generation, Transmission and Distribution",,CV,r,REV602,Table1,Pub,1/21/18 11:50,0.5,0.6,0.7,0.6
+r5505aae221100ely,R,221111,XD180000,Hydroelectric Power Generation,,SE,r,REV602,Table1,Pub,10/7/18 23:53,0.2,0.22,0.24,0.28
+r5505aae221100ely,R,221111,XD180000,Hydroelectric Power Generation,,IMP,r,EXP772,Table1,Pub,8/24/18 0:49,21.9,25.5,26.3,27.2
+r1800tae221111ely,K,221111,XD180000,Hydroelectric Power Generation,,EST,r,REV602,Table2,Priv,1/8/19 6:37,3732,3749,3246,3166
+r1800tae221111ely,K,221111,XD180000,Hydroelectric Power Generation,,YY,r,REV602,Table2,Priv,10/7/19 19:35,5.3,5.8,5.6,5.4
+r1800tae221111ely,K,221112,XD180000,Fossil Fuel Electric Power Generation,,CV,r,BV334,Table2,Pub,8/3/18 15:01,0.6,0.62,0.68,0.7
+r1800tae221111ely,K,221112,XD180000,Fossil Fuel Electric Power Generation,,SE,r,REV602,Table2,Pub,1/21/18 11:50,0.3,0.24,0.34,0.3
+r1800tae221111ely,K,221112,XD180000,Fossil Fuel Electric Power Generation,,IMP,r,REV602,Table2,Pub,10/7/18 23:53,7.2,4.7,4.6,4.5
+r1800aan221112ely,M,221112,XD180000,Fossil Fuel Electric Power Generation,,EST,r,EXP772,Table2,Pub,8/24/18 0:49,28006,27705,28260,29586
+r1800aan221112ely,M,221113,XD180000,Nuclear Electric Power Generation,,YY,r,REV602,Table2,Priv,1/8/19 6:37,5.6,5.9,4.8,4.9
+r1800aan221112ely,M,221113,XD180000,Nuclear Electric Power Generation,,CV,r,REV602,Table2,Priv,10/7/19 19:35,0.4,0.5,0.6,0.2
+r1800aan221112ely,M,221113,XD180000,Nuclear Electric Power Generation,,SE,r,BV334,Table2,Pub,8/3/18 15:01,0.1,0.2,0.5,0.4
+r1800aan221112ely,M,221113,XD180000,Nuclear Electric Power Generation,,IMP,r,REV602,Table2,Pub,1/21/18 11:50,21,21,25,25
+r1800aaa221114ely,R,221114,XD180000,Solar Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,EST,r,REV602,Table1,Pub,10/7/18 23:53,2424,1947,1227,914
+r1800aaa221114ely,R,221114,XD180000,Solar Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,YY,r,EXP772,Table1,Pub,8/24/18 0:49,1,1,1,1
+r1800aaa221114ely,R,221114,XD180000,Solar Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,CV,r,REV602,Table1,Priv,1/8/19 6:37,5,4,5,5
+r1800aaa221114ely,R,221114,XD180000,Solar Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,SE,r,REV602,Table1,Priv,10/7/19 19:35,0.5,0.58,0.6,0.64
+r1800aaa221114ely,R,221115,XD180000,Wind Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,IMP,r,BV334,Table1,Pub,8/3/18 15:01,11,9,11,11
+r1800aae221115ely,K,221115,XD180000,Wind Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,EST,r,REV602,Table2,Pub,1/21/18 11:50,8261,7872,6812,6527
+r1800aae221115ely,K,221115,XD180000,Wind Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,YY,r,REV602,Table2,Pub,10/7/18 23:53,17.6,18.3,6.3,20.3
+r1800aan221115ely,K,221115,XD180000,Wind Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,CV,r,EXP772,Table2,Pub,8/24/18 0:49,0.56,0.64,0.72,0.7
+r1800aae221115ely,K,221116,XD180000,Geothermal Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,SE,r,REV602,Table2,Priv,1/8/19 6:37,4.1,0.6,0.3,0.5
+r1800aae221115ely,K,221116,XD180000,Geothermal Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,IMP,r,REV602,Table2,Priv,10/7/19 19:35,39,56,60,64
+r1800tae221116ely,M,221116,XD180000,Geothermal Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,EST,r,BV334,Table1,Pub,8/3/18 15:01,860,887,802,759
+r1800tae221116ely,M,221116,XD180000,Geothermal Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,YY,r,REV602,Table1,Pub,1/21/18 11:50,15,11,12,11
+r1800tae221116ely,M,221117,XD180000,Biomass Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,CV,r,REV602,Table1,Pub,10/7/18 23:53,0.9,0.98,1.5,1
+r1800tae221116ely,M,221117,XD180000,Biomass Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,SE,r,EXP772,Table1,Pub,8/24/18 0:49,5,4,5,5
+r1800tae221116ely,M,221117,XD180000,Biomass Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,IMP,r,REV602,Table1,Priv,1/8/19 6:37,46,46,50,52
+r1800aan221117ely,R,221117,XD180000,Biomass Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,EST,r,REV602,Table1,Priv,10/7/19 19:35,13877,13184,12980,11751
+r1800aan221117ely,R,221118,XD180000,Other Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,YY,r,BV334,Table1,Pub,8/3/18 15:01,17,84,73,68
+r1800aan221117ely,R,221118,XD180000,Other Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,CV,r,REV602,Table1,Pub,1/21/18 11:50,86,83,72,67
+r1800aan221117ely,R,221118,XD180000,Other Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,SE,r,REV602,Table1,Pub,10/7/18 23:53,1,3,2,2
+r1800aan221117ely,R,221118,XD180000,Other Electric Power Generation,NAICS codes reflect the 2012 revision to the North American Industry Classification System. For a full list of changes visit: http://www.census.gov/eos/www/naics/federal_register_notices/fedregister.html.,IMP,r,EXP772,Table1,Pub,8/24/18 0:49,11,9,11,11
+r1800aaa221121ely,K,221121,XD180000,Electric Bulk Power Transmission and Control,,EST,r,REV602,Table2,Priv,1/8/19 6:37,13994,13305,13125,11894
+r1800aaa221121ely,K,221121,XD180000,Electric Bulk Power Transmission and Control,,YY,r,REV602,Table2,Priv,10/7/19 19:35,5.6,5.9,4.8,4.9
+r1800aaa221121ely,K,221121,XD180000,Electric Bulk Power Transmission and Control,,CV,r,BV334,Table2,Pub,8/3/18 15:01,0.4,0.5,0.6,0.2
+r1800aaa221121ely,K,221121,XD180000,Electric Bulk Power Transmission and Control,,SE,r,REV602,Table2,Pub,1/21/18 11:50,0.1,0.2,0.5,0.4
+r1800aaa221121ely,K,221122,XD180000,Electric Power Distribution,,IMP,r,REV602,Table2,Pub,10/7/18 23:53,20,20,10,10
+r1800aae221122ely,M,221122,XD180000,Electric Power Distribution,,EST,r,EXP772,Table2,Pub,8/24/18 0:49,339574,333974,329085,327630
+r1800aae221122ely,M,221122,XD180000,Electric Power Distribution,,YY,r,REV602,Table2,Priv,1/8/19 6:37,5.6,5.9,4.8,4.9
+r1800aae221122ely,M,221122,XD180000,Electric Power Distribution,,CV,r,REV602,Table2,Priv,10/7/19 19:35,0.4,0.5,0.6,0.2
+r1800aae221122ely,M,2212,XD180000,Natural Gas Distribution,,SE,r,BV334,Table2,Pub,8/3/18 15:01,0.1,0.2,0.5,0.4
+r1800aae221122ely,M,2212,XD179900,Natural Gas Distribution,,IMP,r,REV602,Table2,Pub,1/21/18 11:50,20,20,10,10
+r1800aae221200ely,R,2212,XD180000,Natural Gas Distribution,,EST,r,REV602,Table1,Pub,10/7/18 23:53,110691,100043,95062,98154
+r1800aae221200ely,R,2212,X550100,Natural Gas Distribution,,YY,r,EXP772,Table1,Pub,8/24/18 0:49,20,19,23,21
+r1800aae221200ely,R,2212,X550200,Natural Gas Distribution,,CV,r,REV602,Table1,Priv,1/8/19 6:37,0.8,0.9,0.9,0.8
+r1800aae221200ely,R,2212,X550300,Natural Gas Distribution,,SE,r,REV602,Table1,Priv,10/7/19 19:35,1,1,1,1
+r1800aae221200ely,R,2212,X550400,Natural Gas Distribution,,IMP,r,BV334,Table1,Pub,8/3/18 15:01,10,10.5,10.5,10
+r5505aae221200ely,K,2212,X550500,Natural Gas Distribution,,EST,r,REV602,Table2,Pub,1/21/18 11:50,48887,48269,46837,52366
+r5505aae221200ely,K,2212,XD575000,Natural Gas Distribution,,YY,r,REV602,Table2,Pub,10/7/18 23:53,5.3,5.8,5.6,5.4
+r5505aae221200ely,K,2212,XD575100,Natural Gas Distribution,,CV,r,EXP772,Table2,Pub,8/24/18 0:49,0.6,0.62,0.68,0.7
+r5505aae221200ely,K,2212,XD180000,Natural Gas Distribution,,SE,r,REV602,Table2,Priv,1/8/19 6:37,0.3,0.24,0.34,0.3
+r5505aae221200ely,K,2212,XD180000,Natural Gas Distribution,,IMP,r,REV602,Table2,Priv,10/7/19 19:35,7.2,4.7,4.6,4.5
+r1799aae221300ely,M,2213,XD179900,"Water, Sewage and Other Systems",,EST,r,BV334,Table1,Pub,8/3/18 15:01,2190,1839,1626,1610
+r1800aae221300ely,M,2213,XD180000,"Water, Sewage and Other Systems",,YY,r,REV602,Table1,Pub,1/21/18 11:50,5.6,5.9,4.8,4.9
+r1800aae221300ely,M,2213,X555100,"Water, Sewage and Other Systems",,CV,r,REV602,Table1,Pub,10/7/18 23:53,0.4,0.5,0.6,0.2
+r1800aae221300ely,M,2213,X555200,"Water, Sewage and Other Systems",,SE,r,EXP772,Table1,Pub,8/24/18 0:49,0.1,0.2,0.5,0.4
+r1800aae221300ely,M,2213,XD575000,"Water, Sewage and Other Systems",,IMP,r,REV602,Table1,Priv,1/8/19 6:37,21,21,25,25
+r5751aae221300ely,R,2213,XD575100,"Water, Sewage and Other Systems",,EST,r,REV602,Table1,Priv,10/7/19 19:35,8516,8120,7965,7961
+r5751aae221300ely,R,22131,XD180000,Water Supply and Irrigation Systems,,YY,r,BV334,Table1,Pub,8/3/18 15:01,3.2,3.5,4.4,4.2
+r5751aae221300ely,R,22131,XD180000,Water Supply and Irrigation Systems,,CV,r,REV602,Table1,Pub,1/21/18 11:50,0.3,0.3,0.4,0.4
+r5751aae221300ely,R,22131,XD180000,Water Supply and Irrigation Systems,,SE,r,REV602,Table1,Pub,10/7/18 23:53,0.2,0.2,0.2,3
+r5751aae221300ely,R,22131,XD180000,Water Supply and Irrigation Systems,,IMP,r,EXP772,Table1,Pub,8/24/18 0:49,14.8,14.4,12.9,9.9
+r1800aaa221320ely,K,22132,XD180000,Sewage Treatment Facilities,,EST,r,REV602,Table1,Priv,1/8/19 6:37,2035,1714,1668,1632
+r1800aaa221320ely,K,22132,XD180000,Sewage Treatment Facilities,,YY,r,REV602,Table1,Priv,10/7/19 19:35,20,22,21,28
+r1800aaa221320ely,K,22132,XD180000,Sewage Treatment Facilities,,CV,r,BV334,Table1,Pub,8/3/18 15:01,0.8,1.3,1.3,1
+r1800aaa221320ely,K,22132,XD180000,Sewage Treatment Facilities,,SE,r,REV602,Table1,Pub,1/21/18 11:50,35,36,37,39
+r1800aaa221320ely,K,22133,XD180000,Steam and Air-Conditioning Supply,,IMP,r,REV602,Table1,Pub,10/7/18 23:53,21,20,18,17
+r1800aaa481000ely,M,22133,XD180000,Steam and Air-Conditioning Supply,,EST,r,EXP772,Table2,Pub,8/24/18 0:49,1043,1410,1416,1576
+r1800aaa481000ely,M,22133,XD180000,Steam and Air-Conditioning Supply,,YY,r,REV602,Table2,Priv,1/8/19 6:37,11,5,8.2,9.8
+r1800aaa481000ely,M,22133,XD180000,Steam and Air-Conditioning Supply,,CV,r,REV602,Table2,Priv,10/7/19 19:35,1,2,2,2
+r1800aaa481000ely,M,4849y,XD180000,Transportation and Warehousing,Excludes NAICS 482 (Rail Transportation) and NAICS 491 (Postal Service).,SE,r,BV334,Table2,Pub,8/3/18 15:01,0.1,0.2,0.5,0.4
+r1800aaa481000ely,M,4849y,XD180000,Transportation and Warehousing,Excludes NAICS 482 (Rail Transportation) and NAICS 491 (Postal Service).,IMP,r,REV602,Table2,Pub,1/21/18 11:50,21,21,25,25
+r5575aae481100ely,R,4849y,XD180000,Transportation and Warehousing,Excludes NAICS 482 (Rail Transportation) and NAICS 491 (Postal Service).,EST,r,REV602,Table2,Pub,10/7/18 23:53,991615,918981,879220,876498
+r5575aae481100ely,R,4849y,XD180000,Transportation and Warehousing,Excludes NAICS 482 (Rail Transportation) and NAICS 491 (Postal Service).,YY,r,EXP772,Table2,Pub,8/24/18 0:49,5.6,5.9,4.8,4.9
+r5575aae481100ely,R,481,XD180000,Air Transportation,,CV,r,REV602,Table2,Priv,1/8/19 6:37,0.4,0.5,0.6,0.2
+r5575aae481100ely,R,481,XD180000,Air Transportation,,SE,r,REV602,Table2,Priv,10/7/19 19:35,0.1,0.2,0.5,0.4
+r5575aae481100ely,R,481,XD180000,Air Transportation,,IMP,r,BV334,Table2,Pub,8/3/18 15:01,20,20,10,10
+r5576aae481100ely,K,481,XD180000,Air Transportation,,EST,r,REV602,Table2,Pub,1/21/18 11:50,1568,1486,1355,1384
+r5576aae481100ely,K,4811,XD179900,Scheduled Air Transportation,,YY,r,REV602,Table2,Pub,10/7/18 23:53,0.4,0.5,0.6,0.2
+r5576aae481100ely,K,4811,XD180000,Scheduled Air Transportation,,CV,r,EXP772,Table2,Pub,8/24/18 0:49,0.1,0.2,0.5,0.4
+r5576aae481100ely,K,4811,X557500,Scheduled Air Transportation,,SE,r,REV602,Table2,Priv,1/8/19 6:37,21,21,25,25
+r5576aae481100ely,K,4811,X557600,Scheduled Air Transportation,,IMP,r,REV602,Table2,Priv,10/7/19 19:35,39,56,60,64
+r5580aae481100ely,M,4811,X557700,Scheduled Air Transportation,,EST,r,BV334,Table1,Pub,8/3/18 15:01,121513,111566,105805,106402
+r5580aae481100ely,M,4811,X557800,Scheduled Air Transportation,,YY,r,EXP772,Table1,Pub,8/24/18 0:49,11.2,14.3,13.2,13
+r5580aae481100ely,M,4811,X557900,Scheduled Air Transportation,,CV,r,REV602,Table1,Priv,1/8/19 6:37,0.5,0.9,0.6,0.88
+r5580aae481100ely,M,4811,X558000,Scheduled Air Transportation,,SE,r,REV602,Table1,Priv,10/7/19 19:35,5.3,9.8,9.7,8.4
+r5580aae481100ely,M,481111,XD180000,Scheduled Passenger Air Transportation,,IMP,r,BV334,Table1,Pub,8/3/18 15:01,19.4,28.6,24.6,20.9

@@ -35,8 +35,8 @@ export class StartupService {
       this.httpClient.get('assets/tmp/app-data.json')
     ).pipe(
       catchError(([appData]) => {
-          resolve(null);
-          return [appData];
+        resolve(null);
+        return [appData];
       })
     ).subscribe(([appData]) => {
 
@@ -53,12 +53,12 @@ export class StartupService {
       // Can be set page suffix title, https://ng-alain.com/theme/title
       this.titleService.suffix = res.app.name;
     },
-    () => { },
-    () => {
-      resolve(null);
-    });
+      () => { },
+      () => {
+        resolve(null);
+      });
   }
-  
+
   private viaMock(resolve: any, reject: any) {
     // const tokenData = this.tokenService.get();
     // if (!tokenData.token) {
@@ -86,7 +86,7 @@ export class StartupService {
     // Menu data, https://ng-alain.com/theme/menu
     this.menuService.add([
       {
-        text: 'Main',
+        text: 'Main Navigation',
         group: true,
         children: [
           {
@@ -98,6 +98,14 @@ export class StartupService {
             text: 'Quick Menu',
             icon: { type: 'icon', value: 'rocket' },
             shortcutRoot: true
+          },
+          {
+            text: 'Series',
+            icon: { type: 'icon', value: 'history' },
+            children: [
+              { text: 'Table View', link: '/series/tview' },
+              { text: 'Graph View', link: '/series/sg' }
+            ]
           }
         ]
       }

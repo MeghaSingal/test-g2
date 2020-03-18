@@ -1,0 +1,18 @@
+<button nz-button nz-popover [nzPopoverContent]="seriesNamesTemplate" nzPopoverTrigger="click"
+    [nzGhost]="seriesNamesButtonStyle=='selected'? true : false"
+    [nzType]="seriesNamesButtonStyle=='selected'? 'primary' : 'default'" nzPopoverPlacement="bottomLeft"
+    [(nzVisible)]="visible" (nzVisibleChange)="close()">{{seriesNamesButtonText}}
+</button>
+
+<ng-template #seriesNamesTemplate>
+    <nz-checkbox-wrapper style="width: 500px">
+        <div nz-row>
+            <div nz-col nzSpan="12" *ngFor="let name of seriesNames">
+                <label nz-checkbox nzValue="name.value" [(ngModel)]="name.checked">{{name.label}}</label>
+            </div>
+        </div>
+    </nz-checkbox-wrapper>
+    <nz-divider></nz-divider>
+    <button nz-button nzType="link" (click)="clear()">Clear</button>
+    <button nz-button nzType="primary" (click)="save()">Save</button>
+</ng-template>

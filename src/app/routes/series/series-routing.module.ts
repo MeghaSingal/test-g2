@@ -4,7 +4,7 @@ import { SeriesTableComponent } from './series-table/series-table.component';
 
 const routes: Routes = [
 
-  { path: 'series-table', component: SeriesTableComponent }];
+  { path: 'tview', component: SeriesTableComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

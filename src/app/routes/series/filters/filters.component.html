@@ -1,0 +1,86 @@
+<form [formGroup]="filters">
+    <series-name-filter formControlName="seriesNames"></series-name-filter>
+    <item-type-filter formControlName="itemTypes"></item-type-filter>
+    <!-- <nz-select formControlName="survey" style="width: 120px">
+        <nz-option [nzLabel]="'SAS'" [nzValue]="'SAS'"></nz-option>
+        <nz-option [nzLabel]="'QSS'" [nzValue]="'QSS'"></nz-option>
+        <nz-option [nzLabel]="'M3'" [nzValue]="'M3'"></nz-option>
+    </nz-select> -->
+
+    <!-- <nz-input-group nzCompact>
+        <nz-select formControlName="from" nzPlaceHolder="From Statp" style="width: 120px">
+            <nz-option [nzLabel]="'2014'" [nzValue]="'2014'"></nz-option>
+            <nz-option [nzLabel]="'2015'" [nzValue]="'2015'"></nz-option>
+            <nz-option [nzLabel]="'2016'" [nzValue]="'2016'"></nz-option>
+            <nz-option [nzLabel]="'2017'" [nzValue]="'2017'"></nz-option>
+            <nz-option [nzLabel]="'2018'" [nzValue]="'2018'"></nz-option>
+        </nz-select>
+
+        <input type="text" disabled nz-input placeholder="~"
+            style="width: 35px; pointer-events: none; background-color: rgb(255, 255, 255);" />
+
+        <nz-select formControlName="to" nzPlaceHolder="To Statp" style="width: 120px;">
+            <nz-option [nzLabel]="'2014'" [nzValue]="'2014'"></nz-option>
+            <nz-option [nzLabel]="'2015'" [nzValue]="'2015'"></nz-option>
+            <nz-option [nzLabel]="'2016'" [nzValue]="'2016'"></nz-option>
+            <nz-option [nzLabel]="'2017'" [nzValue]="'2017'"></nz-option>
+            <nz-option [nzLabel]="'2018'" [nzValue]="'2018'"></nz-option>
+        </nz-select>
+    </nz-input-group> -->
+
+    <!-- <div nz-col>
+            <button nz-button nz-popover [nzPopoverContent]="naicsTemplate" nzPopoverTrigger="click"
+                nzPopoverPlacement="bottomLeft">
+                NAICS
+            </button>
+        </div>
+        <div nz-col>
+            <steps-item-type-filter formControlName="itemTypes"></steps-item-type-filter>
+        </div>
+        <div nz-col>
+            <button nz-button nz-popover [nzPopoverContent]="topicTemplate" nzPopoverTrigger="click"
+                nzPopoverPlacement="bottomLeft">
+                Topic/Subtopic
+            </button>
+        </div>
+        <div nz-col>
+            <steps-series-name-filter formControlName="seriesNames"></steps-series-name-filter>
+        </div>
+        <div nz-col>
+            <nz-select formControlName="sortBy" style="width: 160px;">
+                <nz-option [nzLabel]="'Sort By: Name'" [nzValue]="'name'"></nz-option>
+                <nz-option [nzLabel]="'Sort By: Item Type'" [nzValue]="'item_type'"></nz-option>
+            </nz-select>
+        </div> -->
+
+    <!-- <ng-template #naicsTemplate>
+        <steps-naics-filter formControlName="naics"></steps-naics-filter>
+    </ng-template> -->
+</form>
+
+<div style="margin-top: 5px">
+    <nz-tag [nzColor]="'geekblue'" *ngFor="let name of filters.get('seriesNames').value">{{name}}</nz-tag>
+</div>
+
+<ng-template #topicTemplate>
+    <div style="border-bottom: 1px solid rgb(233, 233, 233);">
+        <label nz-checkbox [(ngModel)]="topicOneAllChecked" (ngModelChange)="updateTopicOneAllChecked()"
+            [nzIndeterminate]="topicOneIndeterminate">
+            Topic 1
+        </label>
+    </div>
+    <br />
+    <nz-checkbox-group [(ngModel)]="topicOne" (ngModelChange)="updateTopicOneSingleChecked()"></nz-checkbox-group>
+    <br /><br />
+    <div style="border-bottom: 1px solid rgb(233, 233, 233);">
+        <label nz-checkbox [(ngModel)]="topicTwoAllChecked" (ngModelChange)="updateTopicTwoAllChecked()"
+            [nzIndeterminate]="topicTwoIndeterminate">
+            Topic2
+        </label>
+    </div>
+    <br />
+    <nz-checkbox-group [(ngModel)]="topicTwo" (ngModelChange)="updateTopicTwoSingleChecked()"></nz-checkbox-group>
+    <nz-divider></nz-divider>
+    <button nz-button nzType="link">Clear</button>
+    <button nz-button nzType="primary">Save</button>
+</ng-template>

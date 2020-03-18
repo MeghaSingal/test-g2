@@ -2,10 +2,17 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared';
 import { SeriesRoutingModule } from './series-routing.module';
 import { SeriesTableComponent } from './series-table/series-table.component';
+import { FiltersComponent } from './filters/filters.component';
+import { ItemTypeFilterComponent } from './filters/item-type-filter/item-type-filter.component';
+import { SeriesNameFilterComponent } from './filters/series-name-filter/series-name-filter.component';
+import { SeriesEditComponent } from './series-edit/series-edit.component';
 
+const DIALOG_COMPONENTS = [SeriesEditComponent];
 const COMPONENTS = [
-  SeriesTableComponent];
-const COMPONENTS_NOROUNT = [];
+  SeriesTableComponent,
+  FiltersComponent,
+  ItemTypeFilterComponent,
+  SeriesNameFilterComponent];
 
 @NgModule({
   imports: [
@@ -14,8 +21,8 @@ const COMPONENTS_NOROUNT = [];
   ],
   declarations: [
     ...COMPONENTS,
-    ...COMPONENTS_NOROUNT
+    ...DIALOG_COMPONENTS
   ],
-  entryComponents: COMPONENTS_NOROUNT
+  entryComponents: DIALOG_COMPONENTS
 })
 export class SeriesModule { }
