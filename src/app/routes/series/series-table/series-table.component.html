@@ -17,7 +17,7 @@
         </button>
         <nz-dropdown-menu #exportMenu="nzDropdownMenu">
           <ul nz-menu>
-            <li nz-menu-item>Excel</li>
+            <li nz-menu-item (click)="st.export(data, {filename: 'series.xlsx', sheetname: 'series'})">Excel</li>
             <li nz-menu-item>JSON</li>
             <li nz-menu-item>PNG</li>
           </ul>
@@ -26,5 +26,5 @@
       </div>
     </div>
   </div>
-  <st [data]="seriesList$ | async" [columns]="columns"></st>
+  <st #st [data]="seriesList$ | async" [columns]="columns"></st>
 </nz-card>

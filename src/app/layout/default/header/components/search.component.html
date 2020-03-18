@@ -1,0 +1,19 @@
+<!-- [nzPrefix]="prefixIcon" -->
+<nz-input-group nzSearch [nzAddOnBeforeIcon]="focus ? 'arrow-down' : 'search'">
+    <input nz-input (focus)="qFocus()" (blur)="qBlur()" [placeholder]="'Search for series, people, file, photos...'"
+        [nzAutocomplete]="auto" [formControl]="searchControl" />
+</nz-input-group>
+<ng-template #prefixIcon>
+    <i nz-icon [nzType]="focus ? 'arrow-down' : 'search'" nzTheme="outline"></i>
+</ng-template>
+<nz-autocomplete nzBackfill #auto>
+    <nz-auto-optgroup [nzLabel]="groupTitle">
+        <ng-template #groupTitle>
+            <span>SERIES NAMES</span>
+            <span style="float:right">{{filteredSeries.length}} matches</span>
+        </ng-template>
+        <nz-auto-option *ngFor="let seriesName of filteredSeries" [nzValue]="seriesName.value"
+            [innerHTML]="seriesName.label">
+        </nz-auto-option>
+    </nz-auto-optgroup>
+</nz-autocomplete>

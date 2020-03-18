@@ -1,0 +1,30 @@
+<div class="alain-default__content-title">
+    <h1>Time Series Analytic Repository
+        <small>Project Description</small>
+    </h1>
+</div>
+
+<nz-card>
+    <div nz-row class="mb-md">
+        <div nz-col nzSpan="12">
+            <series-filters></series-filters>
+        </div>
+        <div nz-col nzSpan="12">
+            <div class="text-right">
+                <button nz-button nz-dropdown [nzDropdownMenu]="exportMenu">
+                    <span>Export</span>
+                    <i nz-icon nzType="down"></i>
+                </button>
+                <nz-dropdown-menu #exportMenu="nzDropdownMenu">
+                    <ul nz-menu>
+                        <li nz-menu-item>Excel</li>
+                        <li nz-menu-item>JSON</li>
+                        <li nz-menu-item>PNG</li>
+                    </ul>
+                </nz-dropdown-menu>
+                <button nz-button [nzType]="'default'">Full</button>
+            </div>
+        </div>
+    </div>
+    <g2-custom (render)="render($event)"></g2-custom>
+</nz-card>

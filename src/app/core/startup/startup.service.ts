@@ -104,7 +104,7 @@ export class StartupService {
             icon: { type: 'icon', value: 'history' },
             children: [
               { text: 'Table View', link: '/series/tview' },
-              { text: 'Graph View', link: '/series/sg' }
+              { text: 'Graph View', link: '/series/gview' }
             ]
           }
         ]

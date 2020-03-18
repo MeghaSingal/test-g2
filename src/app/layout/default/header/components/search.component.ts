@@ -1,23 +1,15 @@
 import { Component, HostBinding, Input, ElementRef, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { SeriesService } from 'src/app/routes/series/state/series.service';
+import { SeriesQuery } from 'src/app/routes/series/state/series.query';
+import { FormControl } from '@angular/forms';
+import { debounceTime, map, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'header-search',
-  template: `
-    <nz-input-group [nzAddOnBeforeIcon]="focus ? 'arrow-down' : 'search'">
-      <input
-        nz-input
-        [(ngModel)]="q"
-        (focus)="qFocus()"
-        (blur)="qBlur()"
-        [placeholder]="'Search for people, file, photos...'"
-      />
-    </nz-input-group>
-  `,
+  templateUrl: './search.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderSearchComponent implements AfterViewInit {
-  q: string;
-
   qIpt: HTMLInputElement;
 
   @HostBinding('class.alain-default__search-focus')
@@ -34,7 +26,18 @@ export class HeaderSearchComponent implements AfterViewInit {
     setTimeout(() => this.qIpt.focus(), 300);
   }
 
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef, private seriesService: SeriesService,
+    private seriesQuery: SeriesQuery) { }
+
+  searchControl = new FormControl();
+  ngOnInit() {
+    this.searchControl.patchValue(this.seriesQuery.searchTerm);
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300),
+      map(val => this.runAutoComplete(val)),
+      distinctUntilChanged()
+    ).subscribe((term) => this.seriesService.updateSearchTerm(term));
+  }
 
   ngAfterViewInit() {
     this.qIpt = (this.el.nativeElement as HTMLElement).querySelector('.ant-input') as HTMLInputElement;
@@ -47,5 +50,24 @@ export class HeaderSearchComponent implements AfterViewInit {
   qBlur() {
     this.focus = false;
     this.searchToggled = false;
+  }
+
+  filteredSeries: { value: string, label: string }[] = [];
+  runAutoComplete(val: string) {
+    if (val.length >= 2) {
+      this.seriesService.getSeriesNamesViaJsonServer(val, this.seriesQuery.filters).subscribe(filteredNames => {
+        this.filteredSeries = filteredNames.filter((v, i) => filteredNames.indexOf(v) === i)
+          .map(fSeries => {
+            return {
+              value: fSeries, label: fSeries.replace(new RegExp(val, "gi"), match => {
+                return '<a target="_blank">' + match + '</a>';
+              })
+            };
+          });
+      });
+    } else {
+      this.filteredSeries = [];
+    }
+    return val;
   }
 }
