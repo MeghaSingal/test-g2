@@ -8,13 +8,16 @@ import { SeriesNameFilterComponent } from './filters/series-name-filter/series-n
 import { SeriesEditComponent } from './series-edit/series-edit.component';
 import { SeriesGraphComponent } from './series/series-graph/series-graph.component';
 
+import { HighlightSearch } from './series-table/highlight-keyword.pipe';
+
 const DIALOG_COMPONENTS = [SeriesEditComponent];
 const COMPONENTS = [
   SeriesTableComponent,
   FiltersComponent,
   ItemTypeFilterComponent,
   SeriesNameFilterComponent,
-  SeriesGraphComponent];
+  SeriesGraphComponent,
+  HighlightSearch];
 
 @NgModule({
   imports: [

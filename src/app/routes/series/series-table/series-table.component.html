@@ -11,20 +11,93 @@
     </div>
     <div nz-col nzSpan="12">
       <div class="text-right">
+        <nz-radio-group [(ngModel)]="isExpanded" style="margin-right: 5px">
+          <label nz-radio-button nzValue="C"><i nz-icon [nzType]="'menu'"></i> Collapsed
+            View</label>
+          <label nz-radio-button nzValue="E"><i nz-icon [nzType]="'appstore'"></i> Expanded
+            View</label>
+        </nz-radio-group>
+
         <button nz-button nz-dropdown [nzDropdownMenu]="exportMenu">
           <span>Export</span>
           <i nz-icon nzType="down"></i>
         </button>
         <nz-dropdown-menu #exportMenu="nzDropdownMenu">
           <ul nz-menu>
-            <li nz-menu-item (click)="st.export(data, {filename: 'series.xlsx', sheetname: 'series'})">Excel</li>
-            <li nz-menu-item>JSON</li>
-            <li nz-menu-item>PNG</li>
+            <li nz-menu-item><i nz-icon nzType="file-text" nzTheme="outline"></i>CSV</li>
+            <li nz-menu-item (click)="st.export(data, {filename: 'series.xlsx', sheetname: 'series'})"><i nz-icon
+                nzType="file-excel" nzTheme="outline"></i>Excel</li>
+            <li nz-menu-item><i nz-icon nzType="file-pdf" nzTheme="outline"></i>PDF</li>
           </ul>
         </nz-dropdown-menu>
         <button nz-button [nzType]="'default'">Full</button>
       </div>
     </div>
   </div>
-  <st #st [data]="seriesList$ | async" [columns]="columns"></st>
+
+  <nz-table #seriesTable [nzData]="seriesList$ | async" nzSize="small" id="seriesTable" style="margin-top: 5px">
+    <thead>
+      <tr>
+        <th>Series</th>
+        <th>2015</th>
+        <th>2016</th>
+        <th>2017</th>
+        <th>2018</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-series [ngForOf]="seriesTable.data">
+        <tr>
+          <td>
+            <nz-tag *ngIf="series.item_type.trim()=='CV'" [nzColor]="'geekblue'">
+              {{series.item_type}}</nz-tag>
+            <nz-tag *ngIf="series.item_type.trim()=='EST'" [nzColor]="'orange'">
+              {{series.item_type}}</nz-tag>
+            <nz-tag *ngIf="series.item_type.trim()=='IMP'" [nzColor]="'green'">
+              {{series.item_type}}</nz-tag>
+            <nz-tag *ngIf="series.item_type.trim()=='SE'" [nzColor]="'purple'">
+              {{series.item_type}}</nz-tag>
+            <nz-tag *ngIf="series.item_type.trim()=='YY'" [nzColor]="'cyan'">
+              {{series.item_type}}</nz-tag>
+            <span [innerHTML]="series.name | highlight:(localSearchTerm$ | async)"></span>
+          </td>
+          <td>{{series.val2015a1}}</td>
+          <td>{{series.val2016a1}}</td>
+          <td>{{series.val2017a1}}</td>
+          <td>{{series.val2018a1}}</td>
+          <td>
+            <a (click)="editSeries(series)">
+              <i nz-icon nzType="edit"></i>
+              <span class="pl-sm">Edit</span>
+            </a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a nz-popconfirm nzPopconfirmTitle="Are you sure?" (nzOnConfirm)="deleteSeries(series)" nzIcon="star"
+              nzOkType="danger">
+              <i nz-icon nzType="delete"></i>
+              <span class="pl-sm">Delete</span>
+            </a>
+          </td>
+        </tr>
+        <tr [nzExpand]="isExpanded=='E'? true: false">
+          <td colspan="6">
+            <div nz-text><strong>Topic: </strong>{{series.topic}}</div>
+            <div nz-text><strong>Flag: </strong>{{series.flag}}</div>
+            <div nz-text><strong>Naics: </strong>{{series.naics}}</div>
+            <div nz-text><strong>Item: </strong>{{series.item}}</div>
+            <span nz-text><strong>Data Type: </strong>{{series.data_type}}</span>
+            <span> | </span>
+            <span nz-text><strong>Form: </strong>{{series.form}}</span>
+            <span> | </span>
+            <span nz-text><strong>Table: </strong>{{series.tbl}}</span>
+            <span> | </span>
+            <span nz-text><strong>View: </strong>{{series.view}}</span>
+            <span> | </span>
+            <span nz-text><strong>Last Updated: </strong>{{series.last_updated}}</span>
+          </td>
+        </tr>
+      </ng-template>
+
+    </tbody>
+  </nz-table>
 </nz-card>

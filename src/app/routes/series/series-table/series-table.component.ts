@@ -34,12 +34,14 @@ export class SeriesTableComponent implements OnInit {
   isLoading$: Observable<boolean>;
   seriesList$: Observable<Series[]>;
   count$: Observable<number>;
+  localSearchTerm$: Observable<string>;
 
+  isExpanded: string = "C";
   ngOnInit() {
     this.isLoading$ = this.seriesQuery.selectLoading();
     this.seriesList$ = this.seriesQuery.selectAll();
     this.count$ = this.seriesQuery.selectCount();
-
+    this.localSearchTerm$ = this.seriesQuery.selectSearchTerm$;
     combineLatest([
       this.seriesQuery.selectFilters$,
       this.seriesQuery.selectSearchTerm$
@@ -52,55 +54,31 @@ export class SeriesTableComponent implements OnInit {
   }
   ngOnDestroy() { };
 
-  columns: STColumn[] = [
-    { title: 'Name', index: 'name' },
-    { title: 'Item Type', index: 'item_type', type: 'tag', tag: TAG },
-    { title: '2015', index: 'val2015a1' },
-    { title: '2016', index: 'val2016a1' },
-    { title: '2017', index: 'val2017a1' },
-    { title: '2018', index: 'val2018a1' },
-    {
-      title: 'Action',
-      buttons: [
-        {
-          text: 'Edit', icon: 'edit', type: 'modal',
-          modal: {
-            component: SeriesEditComponent
-          },
-          click: (record, modal) => this.message.success(`You have edited <${record.name}>`)
-        },
-        {
-          text: 'Delete', icon: 'delete', type: 'del',
-          pop: {
-            title: 'Are you sure?',
-            okType: 'danger',
-            icon: 'star'
-          },
-          click: (record, _modal, comp) => {
-            this.message.success(`Successfully deleted <${record.name}>`);
-          }
-        }
-      ]
-    }
-  ]
+  editSeries(series: Series) {
+    console.log(series);
+  }
+
+  deleteSeries(series: Series) {
+    console.log(series);
+  }
 
   download(type: string) {
     if (type == 'xlsx') {
 
-      this.seriesList$.subscribe(s => {
-        const data = [this.columns.map(i => i.title)];
-        s.forEach(i =>
-          data.push(this.columns.map(c => i[c.index as string]))
-        )
-        this.xlsx.export({
-          sheets: [
-            {
-              data: data,
-              name: 'series'
-            }
-          ]
-        })
-      })
+      // this.seriesList$.subscribe(s => {
+      //   const data = [this.columns.map(i => i.title)];
+      //   s.forEach(i =>
+      //     data.push(this.columns.map(c => i[c.index as string]))
+      //   )
+      //   this.xlsx.export({
+      //     sheets: [
+      //       {
+      //         data: data,
+      //         name: 'series'
+      //       }
+      //     ]
+      //   })
+      // })
 
     };
   }
