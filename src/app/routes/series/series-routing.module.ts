@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SeriesTableComponent } from './series-table/series-table.component';
-import { SeriesGraphComponent } from './series/series-graph/series-graph.component';
+import { SeriesGraphComponent } from './series-graph/series-graph.component';
 
 const routes: Routes = [
 

@@ -6,7 +6,7 @@ import { FiltersComponent } from './filters/filters.component';
 import { ItemTypeFilterComponent } from './filters/item-type-filter/item-type-filter.component';
 import { SeriesNameFilterComponent } from './filters/series-name-filter/series-name-filter.component';
 import { SeriesEditComponent } from './series-edit/series-edit.component';
-import { SeriesGraphComponent } from './series/series-graph/series-graph.component';
+import { SeriesGraphComponent } from './series-graph/series-graph.component';
 
 import { HighlightSearch } from './series-table/highlight-keyword.pipe';
 

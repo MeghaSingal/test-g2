@@ -4,7 +4,7 @@ import { STColumn, STComponent, STColumnTag } from '@delon/abc/table';
 import { SFSchema } from '@delon/form';
 import { SeriesService } from '../state/series.service';
 import { Series } from '../state/series.model';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, Subscription } from 'rxjs';
 import { SeriesQuery } from '../state/series.query';
 import { switchMap } from 'rxjs/operators';
 import { untilDestroyed } from 'ngx-take-until-destroy';
@@ -83,7 +83,12 @@ export class SeriesTableComponent implements OnInit {
       // })
 
     } else if (type == 'csv') {
-      // this.seriesQuery.
+      let subscription: Subscription;
+      console.log('csv');
+      subscription = this.seriesList$.subscribe(s => {
+        console.log(s);
+      })
+      subscription.unsubscribe();
     };
   }
 }

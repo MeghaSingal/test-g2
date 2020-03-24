@@ -1,5 +1,6 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { SeriesQuery } from '../../state/series.query';
 
 @Component({
   selector: 'item-type-filter',
@@ -60,18 +61,26 @@ export class ItemTypeFilterComponent implements OnInit, ControlValueAccessor {
   visible: boolean;
   save(): void {
     this.visible = false;
-    this.configureItemTypeButton();
-    this.propagateChange(this.itemTypes.filter(itemType => itemType.checked == true).map(itemType => itemType.label));
+    let checkedItemTypes = this.itemTypes.filter(itemType => itemType.checked == true).map(itemType => itemType.label);
+    if (this.seriesQuery.filters.itemTypes.sort().join(',') !== checkedItemTypes.sort().join(',')) {
+      this.configureItemTypeButton();
+      this.propagateChange(checkedItemTypes);
+    }
   }
   clear(): void {
     this.itemTypes.forEach(itemType => itemType.checked = false);
   }
   close(): void {
-    this.configureItemTypeButton();
-    this.propagateChange(this.itemTypes.filter(itemType => itemType.checked == true).map(itemType => itemType.label));
+    let checkedItemTypes = this.itemTypes.filter(itemType => itemType.checked == true).map(itemType => itemType.label);
+    if (this.visible == false) {
+      if (this.seriesQuery.filters.itemTypes.sort().join(',') !== checkedItemTypes.sort().join(',')) {
+        this.configureItemTypeButton();
+        this.propagateChange(checkedItemTypes);
+      }
+    }
   }
 
-  constructor() { }
+  constructor(private seriesQuery: SeriesQuery) { }
 
   ngOnInit() {
   }
