@@ -11,6 +11,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 import { NzMessageService } from 'ng-zorro-antd';
 import { SeriesEditComponent } from '../series-edit/series-edit.component';
 import { XlsxService } from '@delon/abc';
+import { FileSaverService } from 'ngx-filesaver';
 
 const TAG: STColumnTag = {
   CV: { text: 'CV', color: 'green' },
@@ -29,7 +30,8 @@ export class SeriesTableComponent implements OnInit {
   constructor(private seriesService: SeriesService,
     private seriesQuery: SeriesQuery,
     private message: NzMessageService,
-    private xlsx: XlsxService) { }
+    private xlsx: XlsxService,
+    private fileSaverService: FileSaverService) { }
 
   isLoading$: Observable<boolean>;
   seriesList$: Observable<Series[]>;
@@ -80,6 +82,8 @@ export class SeriesTableComponent implements OnInit {
       //   })
       // })
 
+    } else if (type == 'csv') {
+      // this.seriesQuery.
     };
   }
 }

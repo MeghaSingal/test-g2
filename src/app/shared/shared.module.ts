@@ -12,9 +12,12 @@ import { DelonACLModule } from '@delon/acl';
 // #region third libs
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { CountdownModule } from 'ngx-countdown';
+import { FileSaverModule } from 'ngx-filesaver';
+
 const THIRDMODULES = [
   NgZorroAntdModule,
-  CountdownModule
+  CountdownModule,
+  FileSaverModule
 ];
 // #endregion
 
