@@ -4,7 +4,7 @@ import { NzMessageService } from 'ng-zorro-antd';
 import { NoticeItem, NoticeIconList } from '@delon/abc';
 
 /**
- * 菜单通知
+ * Notification Menu
  */
 @Component({
   selector: 'header-notify',
@@ -49,7 +49,7 @@ export class HeaderNotifyComponent {
   count = 5;
   loading = false;
 
-  constructor(private msg: NzMessageService, private cdr: ChangeDetectorRef) {}
+  constructor(private msg: NzMessageService, private cdr: ChangeDetectorRef) { }
 
   private updateNoticeData(notices: NoticeIconList[]): NoticeItem[] {
     const data = this.data.slice();
@@ -84,14 +84,14 @@ export class HeaderNotifyComponent {
           avatar: 'https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png',
           title: '你收到了 14 份新周报',
           datetime: '2017-08-09',
-          type: '通知',
+          type: 'Inbox',
         },
         {
           id: '000000002',
           avatar: 'https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png',
           title: '你推荐的 曲妮妮 已通过第三轮面试',
           datetime: '2017-08-08',
-          type: '通知',
+          type: 'Inbox',
         },
         {
           id: '000000003',
@@ -99,21 +99,21 @@ export class HeaderNotifyComponent {
           title: '这种模板可以区分多种通知类型',
           datetime: '2017-08-07',
           read: true,
-          type: '通知',
+          type: 'Inbox',
         },
         {
           id: '000000004',
           avatar: 'https://gw.alipayobjects.com/zos/rmsportal/GvqBnKhFgObvnSGkDsje.png',
           title: '左侧图标用于区分不同的类型',
           datetime: '2017-08-07',
-          type: '通知',
+          type: 'Inbox',
         },
         {
           id: '000000005',
           avatar: 'https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png',
           title: '内容不要超过两行字，超出时自动截断',
           datetime: '2017-08-07',
-          type: '通知',
+          type: 'Inbox',
         },
         {
           id: '000000006',
@@ -121,7 +121,7 @@ export class HeaderNotifyComponent {
           title: '曲丽丽 评论了你',
           description: '描述信息描述信息描述信息',
           datetime: '2017-08-07',
-          type: '消息',
+          type: 'Info',
         },
         {
           id: '000000007',
@@ -129,7 +129,7 @@ export class HeaderNotifyComponent {
           title: '朱偏右 回复了你',
           description: '这种模板用于提醒谁与你发生了互动，左侧放『谁』的头像',
           datetime: '2017-08-07',
-          type: '消息',
+          type: 'Info',
         },
         {
           id: '000000008',
@@ -137,39 +137,39 @@ export class HeaderNotifyComponent {
           title: '标题',
           description: '这种模板用于提醒谁与你发生了互动，左侧放『谁』的头像',
           datetime: '2017-08-07',
-          type: '消息',
+          type: 'Info',
         },
         {
           id: '000000009',
-          title: '任务名称',
-          description: '任务需要在 2017-01-12 20:00 前启动',
-          extra: '未开始',
+          title: 'Job name',
+          description: 'Job needs to start before 2017-01-12 20:00',
+          extra: 'Has not started',
           status: 'todo',
-          type: '待办',
+          type: 'Pending',
         },
         {
           id: '000000010',
-          title: '第三方紧急代码变更',
-          description: '冠霖提交于 2017-01-06，需在 2017-01-07 前完成代码变更任务',
-          extra: '马上到期',
+          title: 'Requires hotfix to the functionality',
+          description: 'Submitted on 2017-01-06，Need to be completed by 2017-01-07',
+          extra: 'Almost due',
           status: 'urgent',
-          type: '待办',
+          type: 'Pending',
         },
         {
           id: '000000011',
-          title: '信息安全考试',
-          description: '指派竹尔于 2017-01-09 前完成更新并发布',
-          extra: '已耗时 8 天',
+          title: 'Passed secuirty test',
+          description: 'Requires to release by 2017-01-09',
+          extra: 'Been 8 days',
           status: 'doing',
-          type: '待办',
+          type: 'Pending',
         },
         {
           id: '000000012',
-          title: 'ABCD 版本发布',
-          description: '冠霖提交于 2017-01-06，需在 2017-01-07 前完成代码变更任务',
-          extra: '进行中',
+          title: 'ABCD version released',
+          description: 'Submitted on 2017-01-06，Need to be completed by 2017-01-07',
+          extra: 'processing',
           status: 'processing',
-          type: '待办',
+          type: 'Pending',
         },
       ]);
       this.loading = false;
@@ -178,10 +178,10 @@ export class HeaderNotifyComponent {
   }
 
   clear(type: string) {
-    this.msg.success(`清空了 ${type}`);
+    this.msg.success(`Cleared ${type}`);
   }
 
   select(res: any) {
-    this.msg.success(`点击了 ${res.title} 的 ${res.item.title}`);
+    this.msg.success(`Clicked ${res.title} 's ${res.item.title}`);
   }
 }

@@ -42,15 +42,8 @@
               </nz-input-group>
             </nz-col>
             <nz-col [nzSpan]="8">
-              <button
-                type="button"
-                nz-button
-                nzSize="large"
-                (click)="getCaptcha()"
-                [disabled]="count"
-                nzBlock
-                [nzLoading]="http.loading"
-              >
+              <button type="button" nz-button nzSize="large" (click)="getCaptcha()" [disabled]="count" nzBlock
+                [nzLoading]="http.loading">
                 {{ count ? count + 's' : ('Get code') }}
               </button>
             </nz-col>
@@ -64,7 +57,7 @@
       <label nz-checkbox formControlName="remember">Remember me</label>
     </nz-col>
     <nz-col [nzSpan]="12" class="text-right">
-      <a class="forgot" (click)="msg.error('请找欧阳锋')">Forgot your password?</a>
+      <a class="forgot" (click)="msg.error('Ask Google')">Forgot your password?</a>
     </nz-col>
   </nz-form-item>
   <nz-form-item>
@@ -74,15 +67,10 @@
   </nz-form-item>
 </form>
 <div class="other">
-  Sign in with
-  <i
-    nz-tooltip="in fact Auth0 via window"
-    (click)="open('auth0', 'window')"
-    nz-icon
-    nzType="alipay-circle"
-    class="icon"
-  ></i>
+  <!-- Sign in with
+  <i nz-tooltip="in fact Auth0 via window" (click)="open('auth0', 'window')" nz-icon nzType="alipay-circle"
+    class="icon"></i>
   <i nz-tooltip="in fact Github via redirect" (click)="open('github')" nz-icon nzType="taobao-circle" class="icon"></i>
-  <i (click)="open('weibo', 'window')" nz-icon nzType="weibo-circle" class="icon"></i>
+  <i (click)="open('weibo', 'window')" nz-icon nzType="weibo-circle" class="icon"></i> -->
   <a class="register" routerLink="/passport/register">Sign up</a>
 </div>

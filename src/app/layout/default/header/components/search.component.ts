@@ -55,7 +55,8 @@ export class HeaderSearchComponent implements AfterViewInit {
   filteredSeries: { value: string, label: string }[] = [];
   runAutoComplete(val: string) {
     if (val.length >= 2) {
-      this.seriesService.getSeriesNamesViaJsonServer(val, this.seriesQuery.filters).subscribe(filteredNames => {
+      // this.seriesService.getSeriesNamesViaJsonServer(val, this.seriesQuery.filters).subscribe(filteredNames => {
+      this.seriesService.getSeriesNamesViaDreamFactory(val, this.seriesQuery.filters).subscribe(filteredNames => {
         this.filteredSeries = filteredNames.filter((v, i) => filteredNames.indexOf(v) === i)
           .map(fSeries => {
             return {

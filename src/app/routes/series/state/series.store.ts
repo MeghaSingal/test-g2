@@ -19,10 +19,10 @@ export interface SeriesState extends EntityState<Series> {
     }
 }
 
-@Injectable({providedIn: 'root'})
-@StoreConfig({name: 'series'})
+@Injectable({ providedIn: 'root' })
+@StoreConfig({ name: 'series' })
 export class SeriesStore extends EntityStore<SeriesState, Series> {
-    constructor(){
+    constructor() {
         super({
             //searchTerm: 'ACSV-BV9901199, ACSV-BV9901132, ACSV-BV9901155',
             searchTerm: '',
@@ -34,7 +34,7 @@ export class SeriesStore extends EntityStore<SeriesState, Series> {
                 items: [],
                 topic: null,
                 subtopic: null,
-                itemTypes: [],
+                itemTypes: ['CV'],
                 dataType: null,
                 sortBy: 'item_type',
                 seriesNames: []

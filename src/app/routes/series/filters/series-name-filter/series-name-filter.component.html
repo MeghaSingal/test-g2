@@ -8,7 +8,9 @@
         [nzGhost]="seriesNamesButtonStyle=='selected'? true : false"
         [nzType]="seriesNamesButtonStyle=='selected'? 'primary' : 'default'" nzPopoverPlacement="bottomLeft"
         [(nzVisible)]="visible" (nzVisibleChange)="close()">{{seriesNamesButtonText}}</button>
-    <button nz-button nz-tooltip style="font-size:14px"
+</nz-button-group>
+<nz-button-group style="margin-left: 2px">
+    <button nz-button nz-tooltip style="font-size:14px" (click)="downloadSeriesNames()"
         nzTooltipTitle="Click to download a list of series names in comma-delimited format.">
         <i nz-icon nzType="download"></i>
     </button>

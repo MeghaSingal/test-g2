@@ -45,10 +45,10 @@ function saveData(id: number, value: any) {
 }
 
 export const USERS = {
-  '/user': (req: MockRequest) => genData(req.queryString),
-  '/user/:id': (req: MockRequest) => list.find(w => w.id === +req.params.id),
-  'POST /user/:id': (req: MockRequest) => saveData(+req.params.id, req.body),
-  '/user/current': {
+  'user': (req: MockRequest) => genData(req.queryString),
+  'user/:id': (req: MockRequest) => list.find(w => w.id === +req.params.id),
+  'POST user/:id': (req: MockRequest) => saveData(+req.params.id, req.body),
+  'user/current': {
     name: 'Cipchk',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
     userid: '00000001',
@@ -97,8 +97,8 @@ export const USERS = {
     address: 'XX区XXX路 XX 号',
     phone: '你猜-你猜你猜猜猜',
   },
-  'POST /user/avatar': 'ok',
-  'POST /login/account': (req: MockRequest) => {
+  'POST user/avatar': 'ok',
+  'POST login/account': (req: MockRequest) => {
     const data = req.body;
     if (!(data.userName === 'admin' || data.userName === 'user') || data.password !== 'ng-alain.com') {
       return { msg: `Invalid username or password（admin/ng-alain.com）` };
@@ -114,7 +114,7 @@ export const USERS = {
       },
     };
   },
-  'POST /register': {
+  'POST register': {
     msg: 'ok',
   },
 };

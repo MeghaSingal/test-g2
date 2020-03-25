@@ -25,8 +25,8 @@
         <nz-dropdown-menu #exportMenu="nzDropdownMenu">
           <ul nz-menu>
             <li nz-menu-item (click)="download('csv')"><i nz-icon nzType="file-text" nzTheme="outline"></i>CSV</li>
-            <li nz-menu-item (click)="st.export(data, {filename: 'series.xlsx', sheetname: 'series'})"><i nz-icon
-                nzType="file-excel" nzTheme="outline"></i>Excel</li>
+            <!-- (click)="st.export(data, {filename: 'series.xlsx', sheetname: 'series'})" -->
+            <li nz-menu-item><i nz-icon nzType="file-excel" nzTheme="outline"></i>Excel</li>
             <li nz-menu-item><i nz-icon nzType="file-pdf" nzTheme="outline"></i>PDF</li>
           </ul>
         </nz-dropdown-menu>
@@ -34,7 +34,10 @@
       </div>
     </div>
   </div>
-
+  <div nz-row>
+    <h3 nz-title style="display: inline">{{count$ | async}} Results </h3>
+    <span nz-text nzType="secondary" style="font-size: 22px;">Matching Criteria</span>
+  </div>
   <nz-table #seriesTable [nzData]="seriesList$ | async" nzSize="small" id="seriesTable" style="margin-top: 5px">
     <thead>
       <tr>
@@ -101,3 +104,68 @@
     </tbody>
   </nz-table>
 </nz-card>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Add/Edit Series" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <form nz-form [formGroup]="validateSeriesForm" (ngSubmit)="submitSeriesForm()">
+    <nz-collapse nzAccordion>
+      <nz-collapse-panel [nzHeader]="'Series Attributes'" [nzActive]="true">
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">Name</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Series name field cannot be blank!">
+            <input nz-input formControlName="name" id="name" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="flag">Flag</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Series flag field cannot be blank!">
+            <input nz-input formControlName="flag" id="flag" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="naics">NAICS</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Series NAICS field cannot be blank!">
+            <input nz-input formControlName="naics" id="naics" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="item">Item</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Series item field cannot be blank!">
+            <input nz-input formControlName="item" id="item" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="topic">Topic</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Series topic field cannot be blank!">
+            <input nz-input formControlName="topic" id="topic" />
+          </nz-form-control>
+        </nz-form-item>
+      </nz-collapse-panel>
+      <nz-collapse-panel [nzHeader]="'Series Values'" [nzActive]="false">
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="val2015a1">2015</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="2015 value field cannot be blank!">
+            <input nz-input formControlName="val2015a1" id="val2015a1" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="val2016a1">2016</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="2016 value field cannot be blank!">
+            <input nz-input formControlName="val2015a1" id="val2016a1" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="val2017a1">2017</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="2017 value field cannot be blank!">
+            <input nz-input formControlName="val2017a1" id="val2017a1" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="val2018a1">2018</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="2018 value field cannot be blank!">
+            <input nz-input formControlName="val2018a1" id="val2018a1" />
+          </nz-form-control>
+        </nz-form-item>
+      </nz-collapse-panel>
+    </nz-collapse>
+  </form>
+</nz-modal>

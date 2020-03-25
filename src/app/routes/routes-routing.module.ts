@@ -27,7 +27,7 @@ const routes: Routes = [
 
       // { path: 'series', loadChildren: () => import('./series/series.module').then(m => m.SeriesModule) },
       { path: 'series', loadChildren: () => import('./series/series.module').then(m => m.SeriesModule) },
-
+      { path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsModule) },
       // Exception
       { path: 'exception', loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule) },
       // 业务子模块

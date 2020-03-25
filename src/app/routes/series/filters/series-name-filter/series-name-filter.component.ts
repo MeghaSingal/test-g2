@@ -1,6 +1,8 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { SeriesService } from '../../state/series.service';
+import { SeriesQuery } from '../../state/series.query';
+import { FileSaverService } from 'ngx-filesaver';
 
 @Component({
   selector: 'series-name-filter',
@@ -56,25 +58,43 @@ export class SeriesNameFilterComponent implements OnInit, ControlValueAccessor {
   visible: boolean;
   save(): void {
     this.visible = false;
-    this.configureItemTypeButton();
-    this.propagateChange(this.seriesNames.filter(seriesNames => seriesNames.checked == true).map(seriesNames => seriesNames.label));
+    let checkedSeriesNames = this.seriesNames.filter(seriesName => seriesName.checked == true).map(seriesName => seriesName.label);
+    if (this.seriesQuery.filters.seriesNames.sort().join(',') !== checkedSeriesNames.sort().join(',')) {
+      this.configureItemTypeButton();
+      this.propagateChange(checkedSeriesNames);
+    }
   }
   clear(): void {
     this.seriesNames.forEach(seriesNames => seriesNames.checked = false);
   }
   close(): void {
-    this.configureItemTypeButton();
-    this.propagateChange(this.seriesNames.filter(seriesNames => seriesNames.checked == true).map(seriesNames => seriesNames.label));
+    let checkedSeriesNames = this.seriesNames.filter(seriesName => seriesName.checked == true).map(seriesName => seriesName.label);
+    if (this.visible == false) {
+      if (this.seriesQuery.filters.seriesNames.sort().join(',') !== checkedSeriesNames.sort().join(',')) {
+        this.configureItemTypeButton();
+        this.propagateChange(checkedSeriesNames);
+      }
+    }
   }
 
-  constructor(private seriesService: SeriesService) { }
+  constructor(private seriesService: SeriesService, private seriesQuery: SeriesQuery, private fileSaverService: FileSaverService) { }
 
   ngOnInit() {
-    this.seriesService.getSeriesNamesViaJsonServer('', {}).subscribe(names => {
+    // this.seriesService.getSeriesNamesViaJsonServer('', {}).subscribe(names => {
+    this.seriesService.getSeriesNamesViaDreamFactory('', {}).subscribe(names => {
       this.seriesNames = names.filter((v, i) => names.indexOf(v) === i).map(name => {
         return { label: name, value: name, checked: false }
       });
     })
   }
 
+  downloadSeriesNames() {
+    const fileName = "series.txt";
+    const fileType = this.fileSaverService.genType(fileName);
+    const txtBlog = new Blob([this.seriesQuery.filters.seriesNames.join(', ')], { type: fileType });
+    this.fileSaverService.save(txtBlog, fileName);
+  }
+  uploadSeriesNames() {
+
+  }
 }

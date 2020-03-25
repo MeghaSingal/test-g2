@@ -106,6 +106,13 @@ export class StartupService {
               { text: 'Table View', link: '/series/tview' },
               { text: 'Graph View', link: '/series/gview' }
             ]
+          },
+          {
+            text: 'Charts',
+            icon: { type: 'icon', value: 'history' },
+            children: [
+              { text: 'Area Charts', link: '/charts/area' }
+            ]
           }
         ]
       }
