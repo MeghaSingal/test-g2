@@ -137,6 +137,14 @@ export class SeriesService {
         );
     }
 
+    add(series: Series) {
+        this.seriesStore.upsert(series.id, series);
+    }
+    deleteSeries(series: Series) {
+        console.log(series.id);
+        this.seriesStore.remove(parseInt(series.id));
+    }
+
     updateFilters(filters) {
         this.seriesStore.update({ filters });
     }

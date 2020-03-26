@@ -13,9 +13,9 @@ for (let i = 0; i < total; i += 1) {
       'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png',
     ][i % 2],
     no: `TradeCode ${i}`,
-    title: `一个任务名称 ${i}`,
-    owner: '曲丽丽',
-    description: '这是一段描述',
+    title: `task name ${i}`,
+    owner: 'Tracy',
+    description: 'a description',
     callNo: Math.floor(Math.random() * 1000),
     status: Math.floor(Math.random() * 10) % 4,
     updatedAt: new Date(`2017-07-${Math.floor(i / 2) + 1}`),
@@ -39,82 +39,82 @@ function genData(params: any) {
 
 function saveData(id: number, value: any) {
   const item = list.find(w => w.id === id);
-  if (!item) return { msg: '无效用户信息' };
+  if (!item) return { msg: 'invalid user' };
   Object.assign(item, value);
   return { msg: 'ok' };
 }
 
 export const USERS = {
-  'user': (req: MockRequest) => genData(req.queryString),
-  'user/:id': (req: MockRequest) => list.find(w => w.id === +req.params.id),
-  'POST user/:id': (req: MockRequest) => saveData(+req.params.id, req.body),
-  'user/current': {
+  '/user': (req: MockRequest) => genData(req.queryString),
+  '/user/:id': (req: MockRequest) => list.find(w => w.id === +req.params.id),
+  'POST /user/:id': (req: MockRequest) => saveData(+req.params.id, req.body),
+  '/user/current': {
     name: 'Cipchk',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
     userid: '00000001',
-    email: 'cipchk@qq.com',
-    signature: '海纳百川，有容乃大',
-    title: '交互专家',
-    group: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED',
+    email: 'admin@google.com',
+    signature: 'make america better',
+    title: 'web developer',
+    group: 'census－adep－ead－step－mind benders',
     tags: [
       {
         key: '0',
-        label: '很有想法的',
+        label: 'creative',
       },
       {
         key: '1',
-        label: '专注撩妹',
+        label: 'focus',
       },
       {
         key: '2',
-        label: '帅~',
+        label: 'handsome~',
       },
       {
         key: '3',
-        label: '通吃',
+        label: 'eat like a horse',
       },
       {
         key: '4',
-        label: '专职后端',
+        label: 'professional',
       },
       {
         key: '5',
-        label: '海纳百川',
+        label: 'helpful',
       },
     ],
     notifyCount: 12,
-    country: 'China',
+    country: 'US',
     geographic: {
       province: {
-        label: '上海',
+        label: 'Maryland',
         key: '330000',
       },
       city: {
-        label: '市辖区',
+        label: 'Columbia',
         key: '330100',
       },
     },
-    address: 'XX区XXX路 XX 号',
-    phone: '你猜-你猜你猜猜猜',
+    address: 'some number some road name',
+    phone: 'guess',
   },
-  'POST user/avatar': 'ok',
-  'POST login/account': (req: MockRequest) => {
+  'POST /user/avatar': 'ok',
+  'POST /login/account': (req: MockRequest) => {
     const data = req.body;
-    if (!(data.userName === 'admin' || data.userName === 'user') || data.password !== 'ng-alain.com') {
-      return { msg: `Invalid username or password（admin/ng-alain.com）` };
+    if (!(data.userName === 'admin' || data.userName === 'user') || data.password !== 'admin') {
+      return { msg: `Invalid username or password（admin/admin）` };
     }
     return {
       msg: 'ok',
       user: {
         token: '123456789',
         name: data.userName,
-        email: `${data.userName}@qq.com`,
+        email: `${data.userName}@google.com`,
         id: 10000,
         time: +new Date(),
       },
     };
   },
-  'POST register': {
+  'POST /register': {
     msg: 'ok',
   },
 };

@@ -36,12 +36,10 @@ export class SeriesNameFilterComponent implements OnInit, ControlValueAccessor {
     }
   }
 
+  checkedValues: string[] = [];
   writeValue(values: string[]): void {
     if (values !== undefined) {
-      values.forEach(val => {
-        this.seriesNames.find(name => name.value == val).checked = true;
-      });
-      this.configureItemTypeButton();
+      this.checkedValues = values;
     }
   }
   propagateChange = (_: any) => { };
@@ -80,11 +78,15 @@ export class SeriesNameFilterComponent implements OnInit, ControlValueAccessor {
   constructor(private seriesService: SeriesService, private seriesQuery: SeriesQuery, private fileSaverService: FileSaverService) { }
 
   ngOnInit() {
-    // this.seriesService.getSeriesNamesViaJsonServer('', {}).subscribe(names => {
-    this.seriesService.getSeriesNamesViaDreamFactory('', {}).subscribe(names => {
+    this.seriesService.getSeriesNamesViaJsonServer('', {}).subscribe(names => {
+      // this.seriesService.getSeriesNamesViaDreamFactory('', {}).subscribe(names => {
       this.seriesNames = names.filter((v, i) => names.indexOf(v) === i).map(name => {
         return { label: name, value: name, checked: false }
       });
+      this.checkedValues.forEach(val => {
+        this.seriesNames.find(name => name.value == val).checked = true;
+      });
+      this.configureItemTypeButton();
     })
   }
 

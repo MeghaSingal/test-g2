@@ -42,6 +42,7 @@ export class SeriesTableComponent implements OnInit {
 
   isExpanded: string = "C";
   ngOnInit() {
+    this.initGroup();
     this.isLoading$ = this.seriesQuery.selectLoading();
     this.seriesList$ = this.seriesQuery.selectAll();
     this.count$ = this.seriesQuery.selectCount();
@@ -50,8 +51,8 @@ export class SeriesTableComponent implements OnInit {
       this.seriesQuery.selectFilters$,
       this.seriesQuery.selectSearchTerm$
     ]).pipe(switchMap(([filters, term]) => {
-      // return this.seriesService.getAllViaJsonServer(term, filters);
-      return this.seriesService.getAllViaDreamFactory(term, filters);
+      return this.seriesService.getAllViaJsonServer(term, filters);
+      // return this.seriesService.getAllViaDreamFactory(term, filters);
     }), untilDestroyed(this)).subscribe({
       error() {
       }
@@ -90,61 +91,52 @@ export class SeriesTableComponent implements OnInit {
 
   // Below is the code for CRUD operations of a series.
   isVisible = false;
-  handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
-  }
 
   handleCancel(): void {
     console.log('Button cancel clicked!');
     this.isVisible = false;
+
   }
 
-  editSeries(series: Series) {
+  upsert(series?: Series) {
     this.isVisible = true;
-    this.validateSeriesForm = this.fb.group({
-      name: [series.name, Validators.required],
-      flag: [series.flag, Validators.required],
-      naics: [series.naics, Validators.required],
-      item: [series.item, Validators.required],
-      topic: [series.topic, Validators.required],
-      subtopic: [series.subtopic, Validators.required],
-      itemType: [series.item_type, Validators.required],
-      dataType: [series.data_type, Validators.required],
-      form: [series.form, Validators.required],
-      tbl: [series.tbl, Validators.required],
-      view: [series.view, Validators.required],
-      lastUpdated: [series.last_updated, Validators.required],
-      val2015a1: [series.val2015a1, Validators.required],
-      val2016a1: [series.val2016a1, Validators.required],
-      val2017a1: [series.val2017a1, Validators.required],
-      val2018a1: [series.val2018a1, Validators.required]
-    });
+    if (!series) {
+      this.seriesForm.patchValue({});
+    } else {
+      this.seriesForm.patchValue(series);
+    }
   }
 
   deleteSeries(series: Series) {
+    this.seriesService.deleteSeries(series);
+  }
+
+  submitSeriesForm(series): void {
     console.log(series);
+    this.isVisible = false;
   }
 
-  submitSeriesForm(): void {
-
+  seriesForm: FormGroup;
+  private initGroup() {
+    this.seriesForm = this.fb.group({
+      id: [''],
+      name: ['', Validators.required],
+      flag: ['', Validators.required],
+      naics: ['', Validators.required],
+      item: ['', Validators.required],
+      topic: ['', Validators.required],
+      subtopic: ['', Validators.required],
+      itemType: ['', Validators.required],
+      dataType: ['', Validators.required],
+      form: ['', Validators.required],
+      tbl: ['', Validators.required],
+      view: ['', Validators.required],
+      lastUpdated: ['', Validators.required],
+      val2015a1: ['', Validators.required],
+      val2016a1: ['', Validators.required],
+      val2017a1: ['', Validators.required],
+      val2018a1: ['', Validators.required]
+    });
   }
-  validateSeriesForm: FormGroup = this.fb.group({
-    name: [null, Validators.required],
-    flag: [null, Validators.required],
-    naics: [null, Validators.required],
-    item: [null, Validators.required],
-    topic: [null, Validators.required],
-    subtopic: [null, Validators.required],
-    itemType: [null, Validators.required],
-    dataType: [null, Validators.required],
-    form: [null, Validators.required],
-    tbl: [null, Validators.required],
-    view: [null, Validators.required],
-    lastUpdated: [null, Validators.required],
-    val2015a1: [null, Validators.required],
-    val2016a1: [null, Validators.required],
-    val2017a1: [null, Validators.required],
-    val2018a1: [null, Validators.required]
-  });
+
 }

@@ -41,7 +41,7 @@
   <nz-table #seriesTable [nzData]="seriesList$ | async" nzSize="small" id="seriesTable" style="margin-top: 5px">
     <thead>
       <tr>
-        <th>Series</th>
+        <th>Series <button nz-button nzSize="small" nzType="dashed" (click)="upsert()">Add A New Series</button></th>
         <th>2015</th>
         <th>2016</th>
         <th>2017</th>
@@ -70,7 +70,7 @@
           <td>{{series.val2017a1}}</td>
           <td>{{series.val2018a1}}</td>
           <td>
-            <a (click)="editSeries(series)">
+            <a (click)="upsert(series)">
               <i nz-icon nzType="edit"></i>
               <span class="pl-sm">Edit</span>
             </a>
@@ -105,8 +105,8 @@
   </nz-table>
 </nz-card>
 
-<nz-modal [(nzVisible)]="isVisible" nzTitle="Add/Edit Series" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-  <form nz-form [formGroup]="validateSeriesForm" (ngSubmit)="submitSeriesForm()">
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Add/Edit Series" [nzFooter]="null" (nzOnCancel)="handleCancel()">
+  <form nz-form [formGroup]=" seriesForm" (ngSubmit)="submitSeriesForm(seriesForm.value)">
     <nz-collapse nzAccordion>
       <nz-collapse-panel [nzHeader]="'Series Attributes'" [nzActive]="true">
         <nz-form-item>
@@ -167,5 +167,11 @@
         </nz-form-item>
       </nz-collapse-panel>
     </nz-collapse>
+    <nz-form-item>
+      <nz-form-control>
+        <!-- <button nz-button nzType="default" (click)="handleCancel()">Cancel</button> -->
+        <button nz-button nzType="primary" [disabled]="!seriesForm.valid">Save</button>
+      </nz-form-control>
+    </nz-form-item>
   </form>
 </nz-modal>

@@ -10,7 +10,6 @@ import { NoticeItem, NoticeIconList } from '@delon/abc';
   selector: 'header-notify',
   template: `
     <notice-icon
-      [data]="data"
       [count]="count"
       [loading]="loading"
       btnClass="alain-default__nav-item"

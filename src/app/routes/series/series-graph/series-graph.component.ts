@@ -27,8 +27,8 @@ export class SeriesGraphComponent implements OnInit, OnDestroy {
       this.seriesQuery.selectFilters$,
       this.seriesQuery.selectSearchTerm$
     ]).pipe(switchMap(([filters, term]) => {
-      // return this.seriesService.getAllViaJsonServer(term, filters);
-      return this.seriesService.getAllViaDreamFactory(term, filters);
+      return this.seriesService.getAllViaJsonServer(term, filters);
+      // return this.seriesService.getAllViaDreamFactory(term, filters);
     }), untilDestroyed(this)).subscribe({
       error() {
       }
