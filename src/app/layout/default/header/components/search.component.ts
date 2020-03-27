@@ -42,21 +42,11 @@ export class HeaderSearchComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.qIpt = (this.el.nativeElement as HTMLElement).querySelector('.ant-input') as HTMLInputElement;
   }
-
-  qFocus() {
-    this.focus = true;
-  }
-
-  qBlur() {
-    this.focus = false;
-    this.searchToggled = false;
-  }
-
   filteredSeries: { value: string, label: string }[] = [];
   runAutoComplete(val: string) {
     if (val.length >= 2) {
-      this.seriesService.getSeriesNamesViaJsonServer(val, this.seriesQuery.filters).subscribe(filteredNames => {
-        // this.seriesService.getSeriesNamesViaDreamFactory(val, {}).subscribe(filteredNames => {
+      // this.seriesService.getSeriesNamesViaJsonServer(val, this.seriesQuery.filters).subscribe(filteredNames => {
+      this.seriesService.getSeriesNamesViaDreamFactory(val, {}).subscribe(filteredNames => {
         this.filteredSeries = filteredNames.filter((v, i) => filteredNames.indexOf(v) === i)
           .map(fSeries => {
             return {
@@ -70,5 +60,22 @@ export class HeaderSearchComponent implements AfterViewInit {
       this.filteredSeries = [];
     }
     return val;
+  }
+
+  qFocus() {
+    this.focus = true;
+  }
+
+  qBlur() {
+    this.focus = false;
+    this.searchToggled = false;
+  }
+
+  search(event) {
+    event.target.blur();
+    this.seriesService.getAllViaDreamFactory(this.searchControl.value, this.seriesQuery.filters).subscribe({
+      error() {
+      }
+    });
   }
 }

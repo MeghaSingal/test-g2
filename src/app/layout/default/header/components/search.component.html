@@ -1,12 +1,18 @@
 <!-- [nzPrefix]="prefixIcon" -->
-<nz-input-group nzSearch [nzAddOnBeforeIcon]="focus ? 'arrow-down' : 'search'">
+<!-- [nzAddOnBeforeIcon]="focus ? 'arrow-down' : 'search'" -->
+<nz-input-group [nzAddOnBeforeIcon]="focus ? 'arrow-down' : 'search'">
     <input nz-input (focus)="qFocus()" (blur)="qBlur()" [placeholder]="'Search for series, people, file, photos...'"
-        [nzAutocomplete]="auto" [formControl]="searchControl" />
+        [nzAutocomplete]="auto" [formControl]="searchControl" (keydown.enter)="search($event)" />
 </nz-input-group>
+<ng-template #suffixIconButton>
+    <button nz-button nzType="primary" nzSearch>
+        <i nz-icon nzType="search" nzTheme="outline"></i>
+    </button>
+</ng-template>
 <ng-template #prefixIcon>
     <i nz-icon [nzType]="focus ? 'arrow-down' : 'search'" nzTheme="outline"></i>
 </ng-template>
-<nz-autocomplete nzBackfill #auto>
+<nz-autocomplete nzBackfill #auto nzDefaultActiveFirstOption="false">
     <nz-auto-optgroup [nzLabel]="groupTitle">
         <ng-template #groupTitle>
             <span>SERIES NAMES</span>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { _HttpClient, ModalHelper } from '@delon/theme';
 import { combineLatest } from 'rxjs';
 import { SeriesService } from '../state/series.service';
@@ -7,6 +7,8 @@ import { switchMap } from 'rxjs/operators';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 
 import { Chart } from '@antv/g2';
+import { FileSaverService } from 'ngx-filesaver';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-series-series-series-graph',
@@ -27,8 +29,8 @@ export class SeriesGraphComponent implements OnInit, OnDestroy {
       this.seriesQuery.selectFilters$,
       this.seriesQuery.selectSearchTerm$
     ]).pipe(switchMap(([filters, term]) => {
-      return this.seriesService.getAllViaJsonServer(term, filters);
-      // return this.seriesService.getAllViaDreamFactory(term, filters);
+      // return this.seriesService.getAllViaJsonServer(term, filters);
+      return this.seriesService.getAllViaDreamFactory(term, filters);
     }), untilDestroyed(this)).subscribe({
       error() {
       }
@@ -79,5 +81,16 @@ export class SeriesGraphComponent implements OnInit, OnDestroy {
     this.sChart.render();
   }
   constructor(private seriesService: SeriesService,
-    private seriesQuery: SeriesQuery) { }
+    private seriesQuery: SeriesQuery, private fileSaverService: FileSaverService) { }
+
+
+  @ViewChild('canvas', { static: false }) canvas: ElementRef;
+  @ViewChild('screen', { static: false }) screen: ElementRef;
+  downloadGraph(type: string) {
+    html2canvas(this.screen.nativeElement, { height: 1000 }).then(canvas => {
+      canvas.toBlob(blob => {
+        this.fileSaverService.save(blob, `series-diagram.${type}`);
+      })
+    });
+  }
 }

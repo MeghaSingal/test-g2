@@ -17,8 +17,7 @@
                 </button>
                 <nz-dropdown-menu #exportMenu="nzDropdownMenu">
                     <ul nz-menu>
-                        <li nz-menu-item>Excel</li>
-                        <li nz-menu-item>JSON</li>
+                        <li nz-menu-item (click)="downloadGraph('jpg')">JPG</li>
                         <li nz-menu-item>PNG</li>
                     </ul>
                 </nz-dropdown-menu>
@@ -26,5 +25,7 @@
             </div>
         </div>
     </div>
-    <div id="sGraph"></div>
+    <div #screen>
+        <div id="sGraph"></div>
+    </div>
 </nz-card>

@@ -74,7 +74,7 @@ export class StartupService {
     const user: any = {
       name: 'Admin',
       avatar: './assets/tmp/img/avatar.jpg',
-      email: 'cipchk@qq.com',
+      email: 'admin@google.com',
       token: '123456789'
     };
     // Application information: including site name, description, year

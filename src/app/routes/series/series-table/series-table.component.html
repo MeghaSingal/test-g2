@@ -26,8 +26,8 @@
           <ul nz-menu>
             <li nz-menu-item (click)="download('csv')"><i nz-icon nzType="file-text" nzTheme="outline"></i>CSV</li>
             <!-- (click)="st.export(data, {filename: 'series.xlsx', sheetname: 'series'})" -->
-            <li nz-menu-item><i nz-icon nzType="file-excel" nzTheme="outline"></i>Excel</li>
-            <li nz-menu-item><i nz-icon nzType="file-pdf" nzTheme="outline"></i>PDF</li>
+            <li nz-menu-item><i nz-icon nzType="file-excel" nzTheme="outline" disable="true"></i>Excel</li>
+            <li nz-menu-item><i nz-icon nzType="file-pdf" nzTheme="outline" disable="true"></i>PDF</li>
           </ul>
         </nz-dropdown-menu>
         <button nz-button [nzType]="'default'">Full</button>
@@ -105,9 +105,9 @@
   </nz-table>
 </nz-card>
 
-<nz-modal [(nzVisible)]="isVisible" nzTitle="Add/Edit Series" [nzFooter]="null" (nzOnCancel)="handleCancel()">
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Add/Edit Series" [nzFooter]="null">
   <form nz-form [formGroup]=" seriesForm" (ngSubmit)="submitSeriesForm(seriesForm.value)">
-    <div style="max-height: 500px; overflow: scroll">
+    <div style="max-height: 400px; overflow-y: scroll">
       <nz-collapse nzAccordion>
         <nz-collapse-panel [nzHeader]="'Series Attributes'" [nzActive]="true">
           <nz-form-item>
@@ -193,7 +193,7 @@
           <nz-form-item>
             <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="val2016a1">2016</nz-form-label>
             <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="2016 value field cannot be blank!">
-              <input nz-input formControlName="val2015a1" id="val2016a1" />
+              <input nz-input formControlName="val2016a1" id="val2016a1" />
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
@@ -211,11 +211,11 @@
         </nz-collapse-panel>
       </nz-collapse>
     </div>
-    <nz-divider></nz-divider>
     <nz-form-item>
       <nz-form-control>
-        <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
-        <button nz-button nzType="primary" [disabled]="!seriesForm.valid">Save</button>
+        <button nz-button nzType="default" (click)="handleCancel($event)" style="margin-top: 10px">Cancel</button>
+        <button nz-button nzType="primary" [disabled]="seriesForm.invalid || seriesForm.pristine"
+          style="margin-top: 10px">Save</button>
       </nz-form-control>
     </nz-form-item>
   </form>

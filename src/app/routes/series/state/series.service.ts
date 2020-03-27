@@ -20,12 +20,12 @@ export class SeriesService {
         let params = new HttpParams();
         let dfParams = '';
         if (keyword) {
-            dfParams += 'name contains ' + keyword;
+            dfParams += '(name contains ' + keyword + ')';
         }
 
         if (filters.itemTypes && filters.itemTypes.length > 0) {
             if (dfParams) {
-                dfParams = dfParams + ' & ' + 'item_type in (' + filters.itemTypes.map(itemType => { return '"' + itemType + '"' }).join(',') + ')';
+                dfParams = dfParams + ' and ' + '(item_type in (' + filters.itemTypes.map(itemType => { return '"' + itemType + '"' }).join(',') + '))';
             } else {
                 dfParams = 'item_type in (' + filters.itemTypes.map(itemType => { return '"' + itemType.trim() + '"' }).join(',') + ')';
             }
@@ -33,7 +33,7 @@ export class SeriesService {
 
         if (filters.seriesNames && filters.seriesNames.length > 0) {
             if (dfParams) {
-                dfParams = dfParams + ' & ' + 'name in (' + filters.seriesNames.map(name => { return '"' + name + '"' }).join(',') + ')';
+                dfParams = dfParams + ' and ' + '(name in (' + filters.seriesNames.map(name => { return '"' + name + '"' }).join(',') + '))';
             } else {
                 dfParams = 'name in (' + filters.seriesNames.map(name => { return '"' + name + '"' }).join(',') + ')';
             }
@@ -109,12 +109,12 @@ export class SeriesService {
         let params = new HttpParams();
         let dfParams = '';
         if (keyword) {
-            dfParams += 'name contains ' + keyword;
+            dfParams += '(name contains ' + keyword + ')';
         }
 
         if (filters.itemTypes && filters.itemTypes.length > 0) {
             if (dfParams) {
-                dfParams = dfParams + ' & ' + 'item_type in (' + filters.itemTypes.map(itemType => { return '"' + itemType + '"' }).join(',') + ')';
+                dfParams = dfParams + ' and ' + '(item_type in (' + filters.itemTypes.map(itemType => { return '"' + itemType + '"' }).join(',') + '))';
             } else {
                 dfParams = 'item_type in (' + filters.itemTypes.map(itemType => { return '"' + itemType.trim() + '"' }).join(',') + ')';
             }
@@ -122,7 +122,7 @@ export class SeriesService {
 
         if (filters.seriesNames && filters.seriesNames.length > 0) {
             if (dfParams) {
-                dfParams = dfParams + ' & ' + 'name in (' + filters.seriesNames.map(name => { return '"' + name + '"' }).join(',') + ')';
+                dfParams = dfParams + ' and ' + '(name in (' + filters.seriesNames.map(name => { return '"' + name + '"' }).join(',') + '))';
             } else {
                 dfParams = 'name in (' + filters.seriesNames.map(name => { return '"' + name + '"' }).join(',') + ')';
             }
@@ -137,12 +137,12 @@ export class SeriesService {
         );
     }
 
-    add(series: Series) {
+    upsert(series: Series) {
         this.seriesStore.upsert(series.id, series);
     }
+
     deleteSeries(series: Series) {
-        console.log(series.id);
-        this.seriesStore.remove(parseInt(series.id));
+        this.seriesStore.remove(series.id);
     }
 
     updateFilters(filters) {

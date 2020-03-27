@@ -48,11 +48,11 @@ export class SeriesTableComponent implements OnInit {
     this.count$ = this.seriesQuery.selectCount();
     this.localSearchTerm$ = this.seriesQuery.selectSearchTerm$;
     combineLatest([
-      this.seriesQuery.selectFilters$,
-      this.seriesQuery.selectSearchTerm$
-    ]).pipe(switchMap(([filters, term]) => {
-      return this.seriesService.getAllViaJsonServer(term, filters);
-      // return this.seriesService.getAllViaDreamFactory(term, filters);
+      this.seriesQuery.selectFilters$
+      // this.seriesQuery.selectSearchTerm$
+    ]).pipe(switchMap(([filters]) => {
+      // return this.seriesService.getAllViaJsonServer(term, filters);
+      return this.seriesService.getAllViaDreamFactory(this.seriesQuery.searchTerm, filters);
     }), untilDestroyed(this)).subscribe({
       error() {
       }
@@ -61,6 +61,8 @@ export class SeriesTableComponent implements OnInit {
   ngOnDestroy() { };
 
   download(type: string) {
+    const fileName = `series-table.${type}`;
+    const fileType = this.fileSaverService.genType(fileName);
     if (type == 'xlsx') {
 
       // this.seriesList$.subscribe(s => {
@@ -80,10 +82,14 @@ export class SeriesTableComponent implements OnInit {
 
     } else if (type == 'csv') {
       let subscription: Subscription;
-      console.log('csv');
       subscription = this.seriesList$.subscribe(s => {
-        console.log(s);
-      })
+        let csvData = 'Series, 2015A1, 2016A1, 2017A1, 2018A1 \n';
+        s.forEach(series => {
+          csvData += series.name.trim() + ',' + series.val2015a1 + ',' + series.val2016a1 + ',' + series.val2017a1 + ',' + series.val2018a1 + '\n';
+        })
+        const txtBlob = new Blob([csvData], { type: fileType });
+        this.fileSaverService.save(txtBlob, fileName);
+      });
       subscription.unsubscribe();
     };
   }
@@ -92,27 +98,57 @@ export class SeriesTableComponent implements OnInit {
   // Below is the code for CRUD operations of a series.
   isVisible = false;
 
-  handleCancel(): void {
-    console.log('Button cancel clicked!');
+  handleCancel(e: MouseEvent): void {
+    e.preventDefault();
     this.isVisible = false;
+    this.seriesForm.reset();
 
   }
 
   upsert(series?: Series) {
     this.isVisible = true;
     if (!series) {
-      this.seriesForm.patchValue({});
+      this.seriesForm.patchValue({
+        id: '',
+        name: '',
+        flag: '',
+        naics: '',
+        item: '',
+        topic: '',
+        subtopic: '',
+        item_type: '',
+        data_type: '',
+        form: '',
+        tbl: '',
+        view: '',
+        last_updated: '',
+        val2015a1: '',
+        val2016a1: '',
+        val2017a1: '',
+        val2018a1: ''
+      });
     } else {
       this.seriesForm.patchValue(series);
     }
   }
 
   deleteSeries(series: Series) {
-    // this.seriesService.deleteSeries(series);
+    this.seriesService.deleteSeries(series);
+    this.message.create('success', `${series.name} is successfully deleted.`);
   }
 
-  submitSeriesForm(series): void {
-    console.log(series);
+  submitSeriesForm(series: Series): void {
+    if (series.id) {
+      this.seriesService.upsert(series);
+      this.message.create('success', `${series.name} is successfully updated.`);
+    } else {
+      series.id = Math.round(Math.random() * 100) + 200;
+      let d = new Date();
+      series.last_updated = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear() + ' ' + d.getHours() + ":" + d.getMinutes();
+      this.seriesService.upsert(series);
+      this.message.create('success', `${series.name} is successfully created.`);
+    }
+    this.seriesForm.reset();
     this.isVisible = false;
   }
 
