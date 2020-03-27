@@ -108,7 +108,7 @@ export class SeriesTableComponent implements OnInit {
   }
 
   deleteSeries(series: Series) {
-    this.seriesService.deleteSeries(series);
+    // this.seriesService.deleteSeries(series);
   }
 
   submitSeriesForm(series): void {
@@ -125,13 +125,13 @@ export class SeriesTableComponent implements OnInit {
       naics: ['', Validators.required],
       item: ['', Validators.required],
       topic: ['', Validators.required],
-      subtopic: ['', Validators.required],
-      itemType: ['', Validators.required],
-      dataType: ['', Validators.required],
+      subtopic: [''],
+      item_type: ['', Validators.required],
+      data_type: ['', Validators.required],
       form: ['', Validators.required],
       tbl: ['', Validators.required],
       view: ['', Validators.required],
-      lastUpdated: ['', Validators.required],
+      last_updated: [''],
       val2015a1: ['', Validators.required],
       val2016a1: ['', Validators.required],
       val2017a1: ['', Validators.required],
