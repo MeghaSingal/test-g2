@@ -1,14 +1,14 @@
-<nz-button-group>
+<!-- <nz-button-group>
     <button nz-button nz-tooltip
         nzTooltipTitle="Upload a list of series names in comma-delimited format from a local text file."
         style="font-size:14px">
         <i nz-icon nzType="plus"></i>
-    </button>
-    <button nz-button nz-popover [nzPopoverContent]="seriesNamesTemplate" nzPopoverTrigger="click"
-        [nzGhost]="seriesNamesButtonStyle=='selected'? true : false"
-        [nzType]="seriesNamesButtonStyle=='selected'? 'primary' : 'default'" nzPopoverPlacement="bottomLeft"
-        [(nzVisible)]="visible" (nzVisibleChange)="close()">{{seriesNamesButtonText}}</button>
-</nz-button-group>
+    </button> -->
+<button nz-button nz-popover [nzPopoverContent]="seriesNamesTemplate" nzPopoverTrigger="click"
+    [nzGhost]="seriesNamesButtonStyle=='selected'? true : false"
+    [nzType]="seriesNamesButtonStyle=='selected'? 'primary' : 'default'" nzPopoverPlacement="bottomLeft"
+    [(nzVisible)]="visible" (nzVisibleChange)="close()">{{seriesNamesButtonText}}</button>
+<!-- </nz-button-group>
 <nz-button-group style="margin-left: 2px">
     <button nz-button nz-tooltip style="font-size:14px" (click)="downloadSeriesNames()"
         nzTooltipTitle="Click to download a list of series names in comma-delimited format.">
@@ -18,7 +18,7 @@
         nzTooltipTitle="Click to save the currently searched series names to your favorites.">
         <i nz-icon nzType="save"></i>
     </button>
-</nz-button-group>
+</nz-button-group> -->
 
 <ng-template #seriesNamesTemplate>
     <nz-checkbox-wrapper style="width: 500px">

@@ -4,6 +4,7 @@ import { Series } from './series.model';
 
 export interface SeriesState extends EntityState<Series> {
     searchTerm: string;
+    uploadedNames: string;
     filters: {
         survey: string;
         from: string;
@@ -26,6 +27,7 @@ export class SeriesStore extends EntityStore<SeriesState, Series> {
         super({
             //searchTerm: 'ACSV-BV9901199, ACSV-BV9901132, ACSV-BV9901155',
             searchTerm: '',
+            uploadedNames: '',
             filters: {
                 survey: 'SAS',
                 from: '2014',
@@ -38,6 +40,7 @@ export class SeriesStore extends EntityStore<SeriesState, Series> {
                 dataType: null,
                 sortBy: 'item_type',
                 seriesNames: []
+
             }
         });
     }

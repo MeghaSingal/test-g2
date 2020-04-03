@@ -16,11 +16,20 @@ export class SeriesService {
 
     // To switch using the services, make the changes in the series-graph and series-table components.
 
-    getAllViaDreamFactory(keyword: string, filters) {
+    getAllViaDreamFactory(keyword: string, uploadedNames: string, filters) {
         let params = new HttpParams();
         let dfParams = '';
         if (keyword) {
-            dfParams += '(name contains ' + keyword + ')';
+            dfParams += '((name contains ' + keyword + ')' + ' or ' + '(topic contains ' + keyword + ')' + ' or ' + '(naics contains ' + keyword + '))';
+        }
+
+        if (uploadedNames) {
+            if (dfParams) {
+                dfParams = dfParams + ' and ' + '(name in (' + uploadedNames.split(',').map(name => { return '"' + name.trim() + '"' }).join(',') + '))';
+            } else {
+                dfParams = 'name in (' + uploadedNames.split(',').map(name => { return '"' + name.trim() + '"' }).join(',') + ')';
+            }
+
         }
 
         if (filters.itemTypes && filters.itemTypes.length > 0) {
@@ -137,8 +146,77 @@ export class SeriesService {
         );
     }
 
-    upsert(series: Series) {
-        this.seriesStore.upsert(series.id, series);
+    getSeriesTopicsViaDreamFactory(keyword: string, filters): Observable<string[]> {
+        let params = new HttpParams();
+        let dfParams = '';
+        if (keyword) {
+            dfParams += '(topic contains ' + keyword + ')';
+        }
+
+        if (filters.itemTypes && filters.itemTypes.length > 0) {
+            if (dfParams) {
+                dfParams = dfParams + ' and ' + '(item_type in (' + filters.itemTypes.map(itemType => { return '"' + itemType + '"' }).join(',') + '))';
+            } else {
+                dfParams = 'item_type in (' + filters.itemTypes.map(itemType => { return '"' + itemType.trim() + '"' }).join(',') + ')';
+            }
+        }
+
+        if (filters.seriesNames && filters.seriesNames.length > 0) {
+            if (dfParams) {
+                dfParams = dfParams + ' and ' + '(name in (' + filters.seriesNames.map(name => { return '"' + name + '"' }).join(',') + '))';
+            } else {
+                dfParams = 'name in (' + filters.seriesNames.map(name => { return '"' + name + '"' }).join(',') + ')';
+            }
+        }
+
+        if (dfParams) {
+            params = params.append('filter', dfParams);
+        }
+        params = params.append('order', 'topic');
+        return this.http.get<DfResource>(`${DFAPI}`, { params }).pipe(
+            map(dfResource => dfResource.resource.map(series => series.topic))
+        );
+    }
+
+    getSeriesNaicsViaDreamFactory(keyword: string, filters): Observable<string[]> {
+        let params = new HttpParams();
+        let dfParams = '';
+        if (keyword) {
+            dfParams += '(naics contains ' + keyword + ')';
+        }
+
+        if (filters.itemTypes && filters.itemTypes.length > 0) {
+            if (dfParams) {
+                dfParams = dfParams + ' and ' + '(item_type in (' + filters.itemTypes.map(itemType => { return '"' + itemType + '"' }).join(',') + '))';
+            } else {
+                dfParams = 'item_type in (' + filters.itemTypes.map(itemType => { return '"' + itemType.trim() + '"' }).join(',') + ')';
+            }
+        }
+
+        if (filters.seriesNames && filters.seriesNames.length > 0) {
+            if (dfParams) {
+                dfParams = dfParams + ' and ' + '(name in (' + filters.seriesNames.map(name => { return '"' + name + '"' }).join(',') + '))';
+            } else {
+                dfParams = 'name in (' + filters.seriesNames.map(name => { return '"' + name + '"' }).join(',') + ')';
+            }
+        }
+
+        if (dfParams) {
+            params = params.append('filter', dfParams);
+        }
+        params = params.append('order', 'topic');
+        return this.http.get<DfResource>(`${DFAPI}`, { params }).pipe(
+            map(dfResource => dfResource.resource.map(series => series.naics))
+        );
+    }
+
+    upsert(seriesList: Series[]) {
+        return this.http.put<{ resource: any[] }>(`${DFAPI}`, { resource: seriesList }).pipe(
+            tap(res => {
+                console.log(res.resource.map(obj => obj.id));
+                this.seriesStore.upsertMany(seriesList);
+            })
+        );
     }
 
     deleteSeries(series: Series) {
@@ -155,6 +233,11 @@ export class SeriesService {
 
     updateSearchTerm(searchTerm: string) {
         this.seriesStore.update({ searchTerm });
+        this.invalidateCache();
+    }
+
+    updateUploadedNames(uploadedNames: string) {
+        this.seriesStore.update({ uploadedNames });
         this.invalidateCache();
     }
 }

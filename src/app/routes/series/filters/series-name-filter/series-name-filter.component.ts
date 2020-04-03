@@ -57,9 +57,14 @@ export class SeriesNameFilterComponent implements OnInit, ControlValueAccessor {
   save(): void {
     this.visible = false;
     let checkedSeriesNames = this.seriesNames.filter(seriesName => seriesName.checked == true).map(seriesName => seriesName.label);
-    if (this.seriesQuery.filters.seriesNames.sort().join(',') !== checkedSeriesNames.sort().join(',')) {
+    if (checkedSeriesNames.length === 0) {
       this.configureItemTypeButton();
-      this.propagateChange(checkedSeriesNames);
+      this.propagateChange([]);
+    } else {
+      if (this.seriesQuery.filters.seriesNames.sort().join(',') !== checkedSeriesNames.sort().join(',')) {
+        this.configureItemTypeButton();
+        this.propagateChange(checkedSeriesNames);
+      }
     }
   }
   clear(): void {
@@ -67,10 +72,15 @@ export class SeriesNameFilterComponent implements OnInit, ControlValueAccessor {
   }
   close(): void {
     let checkedSeriesNames = this.seriesNames.filter(seriesName => seriesName.checked == true).map(seriesName => seriesName.label);
-    if (this.visible == false) {
-      if (this.seriesQuery.filters.seriesNames.sort().join(',') !== checkedSeriesNames.sort().join(',')) {
-        this.configureItemTypeButton();
-        this.propagateChange(checkedSeriesNames);
+    if (checkedSeriesNames.length === 0) {
+      this.configureItemTypeButton();
+      this.propagateChange([]);
+    } else {
+      if (this.visible == false) {
+        if (this.seriesQuery.filters.seriesNames.sort().join(',') !== checkedSeriesNames.sort().join(',')) {
+          this.configureItemTypeButton();
+          this.propagateChange(checkedSeriesNames);
+        }
       }
     }
   }

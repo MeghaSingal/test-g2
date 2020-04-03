@@ -8,7 +8,7 @@ import { Observable, combineLatest, Subscription } from 'rxjs';
 import { SeriesQuery } from '../state/series.query';
 import { switchMap } from 'rxjs/operators';
 import { untilDestroyed } from 'ngx-take-until-destroy';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzMessageService, NzContextMenuService, NzDropdownMenuComponent } from 'ng-zorro-antd';
 import { SeriesEditComponent } from '../series-edit/series-edit.component';
 import { XlsxService } from '@delon/abc';
 import { FileSaverService } from 'ngx-filesaver';
@@ -33,7 +33,8 @@ export class SeriesTableComponent implements OnInit {
     private message: NzMessageService,
     private xlsx: XlsxService,
     private fileSaverService: FileSaverService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private nzContextMenuService: NzContextMenuService) { }
 
   isLoading$: Observable<boolean>;
   seriesList$: Observable<Series[]>;
@@ -48,11 +49,12 @@ export class SeriesTableComponent implements OnInit {
     this.count$ = this.seriesQuery.selectCount();
     this.localSearchTerm$ = this.seriesQuery.selectSearchTerm$;
     combineLatest([
-      this.seriesQuery.selectFilters$
-      // this.seriesQuery.selectSearchTerm$
-    ]).pipe(switchMap(([filters]) => {
+      this.seriesQuery.selectFilters$,
+      this.seriesQuery.selectSearchTerm$,
+      this.seriesQuery.selectUploadedNames$,
+    ]).pipe(switchMap(([filters, term, uploadedNames]) => {
       // return this.seriesService.getAllViaJsonServer(term, filters);
-      return this.seriesService.getAllViaDreamFactory(this.seriesQuery.searchTerm, filters);
+      return this.seriesService.getAllViaDreamFactory(term, uploadedNames, filters);
     }), untilDestroyed(this)).subscribe({
       error() {
       }
@@ -139,13 +141,14 @@ export class SeriesTableComponent implements OnInit {
 
   submitSeriesForm(series: Series): void {
     if (series.id) {
-      this.seriesService.upsert(series);
-      this.message.create('success', `${series.name} is successfully updated.`);
+      this.seriesService.upsert([series]).subscribe(data => {
+        this.message.create('success', `${series.name} is successfully updated.`);
+      });
     } else {
       series.id = Math.round(Math.random() * 100) + 200;
       let d = new Date();
       series.last_updated = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear() + ' ' + d.getHours() + ":" + d.getMinutes();
-      this.seriesService.upsert(series);
+      this.seriesService.upsert([series]);
       this.message.create('success', `${series.name} is successfully created.`);
     }
     this.seriesForm.reset();
@@ -175,4 +178,57 @@ export class SeriesTableComponent implements OnInit {
     });
   }
 
+
+  // Bulk Editing Begin
+  listOfSelection = [
+    {
+      text: 'Select All Row',
+      onSelect: () => {
+        // this.checkAll(true);
+      }
+    },
+    {
+      text: 'Select Odd Row',
+      onSelect: () => {
+        // this.listOfDisplayData.forEach((data, index) => (this.mapOfCheckedId[data.id] = index % 2 !== 0));
+        // this.refreshStatus();
+      }
+    },
+    {
+      text: 'Select Even Row',
+      onSelect: () => {
+        // this.listOfDisplayData.forEach((data, index) => (this.mapOfCheckedId[data.id] = index % 2 === 0));
+        // this.refreshStatus();
+      }
+    }
+  ];
+  isAllDisplayDataChecked = false;
+  isIndeterminate = false;
+  // listOfDisplayData: ItemData[] = [];
+  // listOfAllData: ItemData[] = [];
+  // mapOfCheckedId: { [key: string]: boolean } = {};
+  // currentPageDataChange($event: ItemData[]): void {
+  //   this.listOfDisplayData = $event;
+  //   this.refreshStatus();
+  // }
+  // refreshStatus(): void {
+  //   this.isAllDisplayDataChecked = this.listOfDisplayData.every(item => this.mapOfCheckedId[item.id]);
+  //   this.isIndeterminate =
+  //     this.listOfDisplayData.some(item => this.mapOfCheckedId[item.id]) && !this.isAllDisplayDataChecked;
+  // }
+  checkAll(value: boolean): void {
+    // this.listOfDisplayData.forEach(item => (this.mapOfCheckedId[item.id] = value));
+    // this.refreshStatus();
+  }
+  // Bulk Enditing End
+
+  // Context Menu Begin
+  contextMenu($event: MouseEvent, menu: NzDropdownMenuComponent): void {
+    this.nzContextMenuService.create($event, menu);
+  }
+
+  closeMenu(): void {
+    this.nzContextMenuService.close();
+  }
+  // Context Menu End
 }

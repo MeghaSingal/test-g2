@@ -7,7 +7,7 @@ import { debounceTime, map, distinctUntilChanged } from 'rxjs/operators';
 @Component({
   selector: 'header-search',
   templateUrl: './search.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderSearchComponent implements AfterViewInit {
   qIpt: HTMLInputElement;
@@ -36,18 +36,44 @@ export class HeaderSearchComponent implements AfterViewInit {
       debounceTime(300),
       map(val => this.runAutoComplete(val)),
       distinctUntilChanged()
-    ).subscribe((term) => this.seriesService.updateSearchTerm(term));
+    ).subscribe({
+      error() {
+      }
+    });
   }
 
   ngAfterViewInit() {
     this.qIpt = (this.el.nativeElement as HTMLElement).querySelector('.ant-input') as HTMLInputElement;
   }
+
   filteredSeries: { value: string, label: string }[] = [];
+  filteredSeriesTopics: { value: string, label: string }[] = [];
+  filteredSeriesNaics: { value: string, label: string }[] = [];
   runAutoComplete(val: string) {
-    if (val.length >= 2) {
+    if (val.length >= 3) {
       // this.seriesService.getSeriesNamesViaJsonServer(val, this.seriesQuery.filters).subscribe(filteredNames => {
-      this.seriesService.getSeriesNamesViaDreamFactory(val, {}).subscribe(filteredNames => {
+      this.seriesService.getSeriesNamesViaDreamFactory(val, this.seriesQuery.filters).subscribe(filteredNames => {
         this.filteredSeries = filteredNames.filter((v, i) => filteredNames.indexOf(v) === i)
+          .map(fSeries => {
+            return {
+              value: fSeries, label: fSeries.replace(new RegExp(val, "gi"), match => {
+                return '<a target="_blank">' + match + '</a>';
+              })
+            };
+          });
+      });
+      this.seriesService.getSeriesTopicsViaDreamFactory(val, this.seriesQuery.filters).subscribe(filteredTopics => {
+        this.filteredSeriesTopics = filteredTopics.filter((v, i) => filteredTopics.indexOf(v) === i)
+          .map(fSeries => {
+            return {
+              value: fSeries, label: fSeries.replace(new RegExp(val, "gi"), match => {
+                return '<a target="_blank">' + match + '</a>';
+              })
+            };
+          });
+      });
+      this.seriesService.getSeriesNaicsViaDreamFactory(val, this.seriesQuery.filters).subscribe(filteredNaics => {
+        this.filteredSeriesNaics = filteredNaics.filter((v, i) => filteredNaics.indexOf(v) === i)
           .map(fSeries => {
             return {
               value: fSeries, label: fSeries.replace(new RegExp(val, "gi"), match => {
@@ -58,6 +84,8 @@ export class HeaderSearchComponent implements AfterViewInit {
       });
     } else {
       this.filteredSeries = [];
+      this.filteredSeriesTopics = [];
+      this.filteredSeriesNaics = [];
     }
     return val;
   }
@@ -73,9 +101,6 @@ export class HeaderSearchComponent implements AfterViewInit {
 
   search(event) {
     event.target.blur();
-    this.seriesService.getAllViaDreamFactory(this.searchControl.value, this.seriesQuery.filters).subscribe({
-      error() {
-      }
-    });
+    this.seriesService.updateSearchTerm(this.searchControl.value);
   }
 }

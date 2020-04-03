@@ -62,20 +62,30 @@ export class ItemTypeFilterComponent implements OnInit, ControlValueAccessor {
   save(): void {
     this.visible = false;
     let checkedItemTypes = this.itemTypes.filter(itemType => itemType.checked == true).map(itemType => itemType.label);
-    if (this.seriesQuery.filters.itemTypes.sort().join(',') !== checkedItemTypes.sort().join(',')) {
+    if (checkedItemTypes.length === 0) {
       this.configureItemTypeButton();
-      this.propagateChange(checkedItemTypes);
+      this.propagateChange([]);
+    } else {
+      if (this.seriesQuery.filters.itemTypes.sort().join(',') !== checkedItemTypes.sort().join(',')) {
+        this.configureItemTypeButton();
+        this.propagateChange(checkedItemTypes);
+      }
     }
   }
   clear(): void {
     this.itemTypes.forEach(itemType => itemType.checked = false);
   }
   close(): void {
-    let checkedItemTypes = this.itemTypes.filter(itemType => itemType.checked == true).map(itemType => itemType.label);
     if (this.visible == false) {
-      if (this.seriesQuery.filters.itemTypes.sort().join(',') !== checkedItemTypes.sort().join(',')) {
+      let checkedItemTypes = this.itemTypes.filter(itemType => itemType.checked == true).map(itemType => itemType.label);
+      if (checkedItemTypes.length === 0) {
         this.configureItemTypeButton();
-        this.propagateChange(checkedItemTypes);
+        this.propagateChange([]);
+      } else {
+        if (this.seriesQuery.filters.itemTypes.sort().join(',') !== checkedItemTypes.sort().join(',')) {
+          this.configureItemTypeButton();
+          this.propagateChange(checkedItemTypes);
+        }
       }
     }
   }

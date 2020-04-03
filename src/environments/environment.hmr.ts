@@ -1,12 +1,13 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
+import { APIEnum } from '../app/api';
 export const environment = {
   SERVER_URL: `./`,
   production: false,
   useHash: true,
   hmr: true,
+  API_URL: APIEnum.JsonServer
 };
 
 /*

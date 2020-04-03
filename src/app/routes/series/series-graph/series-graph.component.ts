@@ -27,10 +27,11 @@ export class SeriesGraphComponent implements OnInit, OnDestroy {
   ngAfterViewInit() {
     combineLatest([
       this.seriesQuery.selectFilters$,
-      this.seriesQuery.selectSearchTerm$
-    ]).pipe(switchMap(([filters, term]) => {
+      this.seriesQuery.selectSearchTerm$,
+      this.seriesQuery.selectUploadedNames$
+    ]).pipe(switchMap(([filters, term, uploadedNames]) => {
       // return this.seriesService.getAllViaJsonServer(term, filters);
-      return this.seriesService.getAllViaDreamFactory(term, filters);
+      return this.seriesService.getAllViaDreamFactory(term, uploadedNames, filters);
     }), untilDestroyed(this)).subscribe({
       error() {
       }

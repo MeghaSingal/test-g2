@@ -1,25 +1,49 @@
-<!-- [nzPrefix]="prefixIcon" -->
 <!-- [nzAddOnBeforeIcon]="focus ? 'arrow-down' : 'search'" -->
-<nz-input-group [nzAddOnBeforeIcon]="focus ? 'arrow-down' : 'search'">
-    <input nz-input (focus)="qFocus()" (blur)="qBlur()" [placeholder]="'Search for series, people, file, photos...'"
-        [nzAutocomplete]="auto" [formControl]="searchControl" (keydown.enter)="search($event)" />
+<nz-input-group [nzPrefix]="prefixIcon">
+    <input nz-input [formControl]="searchControl" (focus)="qFocus()" (blur)="qBlur()" (keydown.enter)="search($event)"
+        placeholder="Search for series, topic, naics, ..." [nzAutocomplete]="auto" />
 </nz-input-group>
-<ng-template #suffixIconButton>
-    <button nz-button nzType="primary" nzSearch>
-        <i nz-icon nzType="search" nzTheme="outline"></i>
-    </button>
-</ng-template>
+
 <ng-template #prefixIcon>
-    <i nz-icon [nzType]="focus ? 'arrow-down' : 'search'" nzTheme="outline"></i>
+    <i nz-icon [nzType]="focus ? 'arrow-left' : 'search'" nzTheme="outline"
+        [ngStyle]="{'color':focus ? '' : 'white' }"></i>
 </ng-template>
+
 <nz-autocomplete nzBackfill #auto nzDefaultActiveFirstOption="false">
-    <nz-auto-optgroup [nzLabel]="groupTitle">
-        <ng-template #groupTitle>
+    <nz-auto-optgroup [nzLabel]="groupNames" *ngIf="searchControl.value.length>=3">
+        <ng-template #groupNames>
             <span>SERIES NAMES</span>
             <span style="float:right">{{filteredSeries.length}} matches</span>
         </ng-template>
-        <nz-auto-option *ngFor="let seriesName of filteredSeries" [nzValue]="seriesName.value"
+        <nz-auto-option *ngFor="let seriesName of filteredSeries.slice(0,3)" [nzValue]="seriesName.value"
             [innerHTML]="seriesName.label">
+        </nz-auto-option>
+        <nz-auto-option>
+            <a *ngIf="filteredSeries.length >= 3">View All Series Name Matches ></a>
+        </nz-auto-option>
+    </nz-auto-optgroup>
+    <nz-auto-optgroup [nzLabel]="groupTopics" *ngIf="searchControl.value.length>=3">
+        <ng-template #groupTopics>
+            <span>SERIES TOPICS</span>
+            <span style="float:right">{{filteredSeriesTopics.length}} matches</span>
+        </ng-template>
+        <nz-auto-option *ngFor="let seriesTopics of filteredSeriesTopics.slice(0,3)" [nzValue]="seriesTopics.value"
+            [innerHTML]="seriesTopics.label">
+        </nz-auto-option>
+        <nz-auto-option>
+            <a *ngIf="filteredSeriesTopics.length >= 3">View All Series Topics Matches ></a>
+        </nz-auto-option>
+    </nz-auto-optgroup>
+    <nz-auto-optgroup [nzLabel]="groupNaics" *ngIf="searchControl.value.length>=3">
+        <ng-template #groupNaics>
+            <span>SERIES NAICS</span>
+            <span style="float:right">{{filteredSeriesNaics.length}} matches</span>
+        </ng-template>
+        <nz-auto-option *ngFor="let seriesNaics of filteredSeriesNaics.slice(0,3)" [nzValue]="seriesNaics.value"
+            [innerHTML]="seriesNaics.label">
+        </nz-auto-option>
+        <nz-auto-option>
+            <a *ngIf="filteredSeriesNaics.length >= 3">View All Series Naics Matches ></a>
         </nz-auto-option>
     </nz-auto-optgroup>
 </nz-autocomplete>

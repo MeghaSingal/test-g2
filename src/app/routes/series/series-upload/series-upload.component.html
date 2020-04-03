@@ -1,0 +1,57 @@
+<nz-spin nzTip="Uploading..." [nzSpinning]="uploading">
+    <nz-collapse [nzBordered]="false">
+        <nz-collapse-panel nzActive="true" [nzHeader]="advSearchTitle" style="border: 0px">
+            <div nz-row nzType="flex" nzJustify="start">
+                <div nz-col>
+                    <!-- <form nzLayout="vertical" nz-form>
+    <nz-form-control> -->
+                    <!-- http://127.0.0.1:4200/fake -->
+                    <!-- nzAction="https://jsonplaceholder.typicode.com/posts/"  -->
+                    <!-- [nzBeforeUpload]="beforeUpload" -->
+                    <!-- nzAction="http://cats6-56.it.census.gov/api/v2/seriesupload?api_key=2c3233424441d8cabae95683ed0df139c7b5c8d8138cdfc974f528f6a17bbed1" -->
+                    <!-- (nzChange)="hanldeUploadChange($event)" -->
+                    <!-- [nzCustomRequest]="customReq" -->
+                    <nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/" [nzCustomRequest]="customReq"
+                        nzListType="picture-card" [nzShowUploadList]="false">
+                        <i nz-icon nzType="plus"></i>
+                        <div class="upload-text">Upload</div>
+                    </nz-upload>
+                    <!-- </nz-form-control> -->
+                </div>
+                <div nz-col style="flex:1">
+                    <!-- <nz-form-control> -->
+                    <nz-input-group nzSearch [nzAddOnAfter]="addOnAfterTemplate" style="width: 100%">
+                        <textarea nz-input [formControl]="uploadedSeriesControl" placeholder="Search"
+                            style="height: 104px;resize:none;"
+                            placeholder="Enter comma-delimited series names here, ex. UYC91ZGY8JV, HTV63QXT9DH"></textarea>
+                    </nz-input-group>
+                    <ng-template #addOnAfterTemplate>
+                        <button nz-button nzType="primary" nzGhost nzShape="circle" (click)="search()" nz-tooltip
+                            nzTooltipTitle="Click to search these series.">
+                            <i nz-icon nzType="search"></i>
+                        </button>
+                        <nz-divider nzType="vertical"></nz-divider>
+                        <button nz-button nzType="default" nzShape="circle" (click)="download()" nz-tooltip
+                            nzTooltipTitle="Click to download a list of series names in comma-delimited format.">
+                            <i nz-icon nzType="download"></i>
+                        </button>
+                        <nz-divider nzType="vertical"></nz-divider>
+                        <button nz-button nzType="default" nzShape="circle" (click)="addToFavorites()" nz-tooltip
+                            nzTooltipTitle="Click to save the currently searched series names to your favorites.">
+                            <i nz-icon nzType="save"></i>
+                        </button>
+                        <nz-modal [(nzVisible)]="confirmAddToFavorites" nzTitle="How would you like to call this list?"
+                            (nzOnOk)="addToFavoritesOK()" (nzOnCancel)="addToFavoritesCancel()">
+                            <input type="text" nz-input placeholder="Enter list name here" [(ngModel)]="listName" />
+                        </nz-modal>
+                    </ng-template>
+                </div>
+            </div>
+            <!-- </nz-form-control>
+</form> -->
+        </nz-collapse-panel>
+    </nz-collapse>
+    <ng-template #advSearchTitle>
+        <span nz-text nzType="secondary">Advance Search</span>
+    </ng-template>
+</nz-spin>

@@ -2,6 +2,7 @@
   <h1>Time Series Analytic Repository
     <small>Project Description</small>
   </h1>
+  <steps-favorites-page></steps-favorites-page>
 </div>
 
 <nz-card>
@@ -34,14 +35,22 @@
       </div>
     </div>
   </div>
+  <series-upload></series-upload>
   <div nz-row>
     <h3 nz-title style="display: inline">{{count$ | async}} Results </h3>
     <span nz-text nzType="secondary" style="font-size: 22px;">Matching Criteria</span>
   </div>
-  <nz-table #seriesTable [nzData]="seriesList$ | async" nzSize="small" id="seriesTable" style="margin-top: 5px">
+  <nz-table #seriesTable [nzData]="seriesList$ | async" nzSize="small" id="seriesTable" style="margin-top: 5px"
+    nzShowSizeChanger (contextmenu)="contextMenu($event, menu)">
     <thead>
       <tr>
-        <th>Series <button nz-button nzSize="small" nzType="dashed" (click)="upsert()">Add A New Series</button></th>
+        <th nzShowCheckbox nzShowRowSelection [nzSelections]="listOfSelection" [(nzChecked)]="isAllDisplayDataChecked"
+          [nzIndeterminate]="isIndeterminate" (nzCheckedChange)="checkAll($event)">
+        </th>
+        <!-- <button nz-button nzSize="small" nzType="dashed" (click)="upsert()">Add A New Series</button> -->
+        <th>Series</th>
+        <th>Topic</th>
+        <th>Naics</th>
         <th>2015</th>
         <th>2016</th>
         <th>2017</th>
@@ -52,6 +61,8 @@
     <tbody>
       <ng-template ngFor let-series [ngForOf]="seriesTable.data">
         <tr>
+          <!--  [(nzChecked)]="mapOfCheckedId[data.id]" (nzCheckedChange)="refreshStatus()" -->
+          <td nzShowCheckbox></td>
           <td>
             <nz-tag *ngIf="series.item_type.trim()=='CV'" [nzColor]="'geekblue'">
               {{series.item_type}}</nz-tag>
@@ -64,6 +75,12 @@
             <nz-tag *ngIf="series.item_type.trim()=='YY'" [nzColor]="'cyan'">
               {{series.item_type}}</nz-tag>
             <span [innerHTML]="series.name | highlight:(localSearchTerm$ | async)"></span>
+          </td>
+          <td>
+            <span [innerHTML]="series.topic | highlight:(localSearchTerm$ | async)"></span>
+          </td>
+          <td>
+            <span [innerHTML]="series.naics | highlight:(localSearchTerm$ | async)"></span>
           </td>
           <td>{{series.val2015a1}}</td>
           <td>{{series.val2016a1}}</td>
@@ -83,16 +100,14 @@
           </td>
         </tr>
         <tr [nzExpand]="isExpanded=='E'? true: false">
-          <td colspan="6">
-            <div nz-text><strong>Topic: </strong>{{series.topic}}</div>
+          <td colspan="8">
+            <!-- <div nz-text><strong>Topic: </strong>{{series.topic}}</div> -->
+            <div nz-text><strong>Table: </strong>{{series.tbl}}</div>
             <div nz-text><strong>Flag: </strong>{{series.flag}}</div>
-            <div nz-text><strong>Naics: </strong>{{series.naics}}</div>
+            <!-- <div nz-text><strong>Naics: </strong>{{series.naics}}</div> -->
+            <div nz-text><strong>Form: </strong>{{series.form}}</div>
             <div nz-text><strong>Item: </strong>{{series.item}}</div>
             <span nz-text><strong>Data Type: </strong>{{series.data_type}}</span>
-            <span> | </span>
-            <span nz-text><strong>Form: </strong>{{series.form}}</span>
-            <span> | </span>
-            <span nz-text><strong>Table: </strong>{{series.tbl}}</span>
             <span> | </span>
             <span nz-text><strong>View: </strong>{{series.view}}</span>
             <span> | </span>
@@ -220,3 +235,23 @@
     </nz-form-item>
   </form>
 </nz-modal>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu>
+    <li nz-menu-item>1st menu item</li>
+    <li nz-menu-item>2nd menu item</li>
+    <li nz-menu-item nzDisabled>disabled menu item</li>
+    <li nz-submenu nzTitle="sub menu">
+      <ul>
+        <li nz-menu-item>3rd menu item</li>
+        <li nz-menu-item>4th menu item</li>
+      </ul>
+    </li>
+    <li nz-submenu nzDisabled nzTitle="disabled sub menu">
+      <ul>
+        <li nz-menu-item>3rd menu item</li>
+        <li nz-menu-item>4th menu item</li>
+      </ul>
+    </li>
+  </ul>
+</nz-dropdown-menu>
